@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+
+    <title>Untitle-Project-FE</title>
+</head>
+<body>
+    <h1>Home</h1>
+
+    <ul>
+        <li><a href="html/product_list.html">상품 목록</a></li>
+        <li><a id="login-btn" href="html/login.html">로그인</a></li>
+        <li><a id="logout-btn" href="index.html">로그아웃</a></li>
+        <li><a id="profile-btn" href="html/profile.html">회원정보</a></li>
+        <li><a href="html/register.html">회원가입</a></li>
+        <li id="intro"></li>
+    </ul>
+
+    <script>
+        $(document).ready(() => {
+            if (localStorage.getItem("access")) {
+                $("#login-btn").hide();
+                $("#logout-btn").show();
+
+                $.ajax({
+                    url: "http://localhost:8000/accounts/profile/",
+                    type: "POST",
+                    headers: {Authorization: `Bearer ${localStorage.getItem("access")}`},
+                    dataType: "json",
+                    contentType: "application/json",
+                    crossDomain: true,
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    success: (response) => {
+                        $("#intro").text(`${response.name}님, 환영합니다.`);
+                    },
+                    error: (error) => {
+                        console.log(error);
+                    }
+                });
+            } else {
+                $("#login-btn").show();
+                $("#logout-btn").hide();
+            }
+        });
+
+        $("#logout-btn").click((e) => {
+            e.preventDefault();
+
+            localStorage.removeItem("access");
+            localStorage.removeItem("refresh");
+
+            location.reload();
+        });
+    </script>
+</body>
+</html>

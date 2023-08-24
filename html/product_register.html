@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+
+    <title>Untitle-Project-FE</title>
+</head>
+<body>
+    <h1>상품 등록</h1>
+
+    <form id="register-form">
+        <ul>
+            <li>
+                <select id="category">
+                    <option value="의류 및 패션">의류 및 패션</option>
+                    <option value="전자제품">전자제품</option>
+                    <option value="가구 및 인테리어">가구 및 인테리어</option>
+                    <option value="뷰티 및 화장품">뷰티 및 화장품</option>
+                    <option value="스포츠 및 여가활동">스포츠 및 여가활동</option>
+                    <option value="식품 및 음료">식품 및 음료</option>
+                    <option value="유아 및 출산용품">유아 및 출산용품</option>
+                    <option value="도서 및 문구용품">도서 및 문구용품</option>
+                    <option value="자동차 및 오토바이">자동차 및 오토바이</option>
+                    <option value="기술 및 가전제품">기술 및 가전제품</option>
+                </select>
+            </li>
+            <li><input type="text" id="name" placeholder="상품명"></li>
+            <li><input type="number" id="price" placeholder="가격"></li>
+            <li><input type="number" id="amount" placeholder="수량"></li>
+            <li><input type="text" id="desc" placeholder="설명"></li>
+            <li>
+                <select id="status">
+                    <option value="승인 대기 중">승인 대기 중</option>
+                    <option value="판매중">판매중</option>
+                    <option value="판매 중단">판매 중단</option>
+                </select>
+            </li>
+        </ul>
+        <input type="submit" id="submit-btn" value="등록">
+    </form>
+
+    <script>
+        $("#register-form").submit((e) => {
+            e.preventDefault();
+
+            const request = {
+                category: $("#category").val(),
+                name: $("#name").val(),
+                price: $("#price").val(),
+                amount: $("#amount").val(),
+                desc: $("#desc").val(),
+                status: $("#status").val()
+            }
+
+            $.ajax({
+                url: "http://localhost:8000/products/create/",
+                type: "POST",
+                headers: {Authorization: `Bearer ${localStorage.getItem("access")}`},
+                data: JSON.stringify(request),
+                dataType: "json",
+                contentType: "application/json",
+                crossDomain: true,
+                xhrFields: {
+                    withCredentials: true
+                },
+                success: (response) => {
+                    location.href = "product_list.html"
+                },
+                error: (error) => {
+                    console.log(error);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

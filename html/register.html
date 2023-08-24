@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+
+    <title>Untitle-Project-FE</title>
+</head>
+<body>
+    <h1>회원가입</h1>
+
+    <form id="register-form">
+        <ul>
+            <li>
+                <input type="email" id="email" placeholder="이메일">
+            </li>
+            <li>
+                <input type="password" id="password1" placeholder="비밀번호">
+            </li>
+            <li>
+                <input type="password" id="password2" placeholder="비밀번호 확인">
+            </li>
+            <li>
+                <input type="text" id="name" placeholder="이름">
+            </li>
+            <li>
+                <input type="text" id="phone" placeholder="전화번호">
+            </li>
+            <li>
+                <input type="text" id="address" placeholder="주소">
+            </li>
+
+            <input type="submit" id="submit-btn" value="가입">
+        </ul>
+    </form>
+
+    <script>
+        $("#register-form").submit((e) => {
+            e.preventDefault();
+
+            const request = {
+                email: $("#email").val(),
+                password1: $("#password1").val(),
+                password2: $("#password2").val(),
+                name: $("#name").val(),
+                phone: $("#phone").val(),
+                address: $("#address").val()
+            }
+
+            $.ajax({
+                url: "http://localhost:8000/accounts/register/",
+                type: "POST",
+                data: JSON.stringify(request),
+                dataType: "json",
+                contentType: "application/json",
+                crossDomain: true,
+                xhrFields: {
+                    withCredentials: true
+                },
+                success: (response) => {
+                    location.href = "../index.html"
+                },
+                error: (error) => {
+                    console.log(error);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
