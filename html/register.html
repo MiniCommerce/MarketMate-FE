@@ -38,34 +38,34 @@
     </form>
 
     <script>
-        $("#register-form").submit((e) => {
+        const submitBtn = document.getElementById("submit-btn")
+
+        submitBtn.addEventListener("click", (e) => {
             e.preventDefault();
+            let email = document.getElementById("email").value
+            let password = document.getElementById("password1").value
+            let nickname = document.getElementById("name").value
+            let shipping_address = document.getElementById("address").value
+            let number = document.getElementById("phone").value
 
-            const request = {
-                email: $("#email").val(),
-                password1: $("#password1").val(),
-                password2: $("#password2").val(),
-                name: $("#name").val(),
-                phone: $("#phone").val(),
-                address: $("#address").val()
+            let data = {
+                email: email,
+                password: password,
+                nickname: nickname,
+                shipping_address: shipping_address,
+                number: number
             }
-
-            $.ajax({
-                url: "http://localhost:8000/accounts/register/",
-                type: "POST",
-                data: JSON.stringify(request),
-                dataType: "json",
-                contentType: "application/json",
-                crossDomain: true,
-                xhrFields: {
-                    withCredentials: true
+            
+            fetch("http://127.0.0.1:8000/user/buyer/signin/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
                 },
-                success: (response) => {
-                    location.href = "../index.html"
-                },
-                error: (error) => {
-                    console.log(error);
-                }
+                body: JSON.stringify(data)
+            }).then(function(response){
+                return response.json();
+            }).then(function(data){
+                console.log(data);
             });
         });
     </script>
