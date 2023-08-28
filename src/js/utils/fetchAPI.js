@@ -48,13 +48,12 @@ async function apiDelete(url, data) {
   }
 }
 
-async function apiPut(url, data, token) {
+async function apiPut(url, data) {
   try {
     const res = await fetch(url, {
       method: "PUT",
       headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Token ${token}`
+        "Content-Type": "application/json"
       },
       body: JSON.stringify(data)
     });
@@ -83,12 +82,13 @@ async function apiPatch(url, data) {
   }
 }
 
-async function apiAuthPost(url, data) {
+async function apiAuthPost(url, data, token="") {
   try {
     const res = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Token ${token}`
       },
       body: JSON.stringify(data)
     });
