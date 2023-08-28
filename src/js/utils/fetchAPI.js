@@ -15,13 +15,12 @@ async function apiPost(url, data) {
   }
 }
 
-async function apiGet(url, token) {
+async function apiGet(url) {
   try {
     const res = await fetch(url, {
       method: "GET",
       headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Token ${token}`
+        "Content-Type": "application/json"
       }
     });  
     const answer = await res.json();
@@ -84,13 +83,12 @@ async function apiPatch(url, data) {
   }
 }
 
-async function apiAuthPost(url, data, token="") {
+async function apiAuthPost(url, data) {
   try {
     const res = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Token ${token}`
       },
       body: JSON.stringify(data)
     });
