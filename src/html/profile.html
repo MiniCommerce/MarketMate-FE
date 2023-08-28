@@ -11,111 +11,14 @@
     <title>Untitle-Project-FE</title>
 </head>
 <body>
-    <h1>회원정보</h1>
-
-    <form id="profile-form">
+    <h1>My Page</h1>
+    <nav>
         <ul>
-            <li>
-                이메일: <input type="email" id="email" value="">
-            </li>
-            <li>
-                이름: <input type="text" id="name" value="">
-            </li>
-            <li>
-                전화번호: <input type="tel" id="phone" value="">
-            </li>
-            <li>
-                주소: <input type="text" id="address" value="">
-            </li>
-
-            <input type="submit" id="submit-btn" value="수정">
-            <input type="submit" id="delete-btn" value="탈퇴">
+            <li><a href="profile_update.html">정보 수정</a></li>
+            <li><a href="">회원 탈퇴</a></li>
+            <li><a href="">내 판매 상품</a></li>
+            <li><a href="">주문 현황</a></li>
         </ul>
-    </form>
-
-    <script>
-        $(document).ready(() => {
-            if (localStorage.getItem("access")) {
-                $.ajax({
-                    url: "http://localhost:8000/accounts/profile/",
-                    type: "POST",
-                    headers: {Authorization: `Bearer ${localStorage.getItem("access")}`},
-                    dataType: "json",
-                    contentType: "application/json",
-                    crossDomain: true,
-                    xhrFields: {
-                        withCredentials: true
-                    },
-                    success: (response) => {
-                        $("#email").attr("value", response.email);
-                        $("#name").attr("value", response.name);
-                        $("#phone").attr("value", response.phone);
-                        $("#address").attr("value", response.address);
-                    },
-                    error: (error) => {
-                        console.log(error);
-                    }
-                });
-            }
-        });
-
-        $("#submit-btn").click((e) => {
-            e.preventDefault();
-
-            const request = {
-                access: localStorage.getItem("access"),
-                email: $("#email").val(),
-                name: $("#name").val(),
-                phone: $("#phone").val(),
-                address: $("#address").val()
-            };
-
-            $.ajax({
-                url: "http://localhost:8000/accounts/profile/update/",
-                type: "PUT",
-                data: JSON.stringify(request),
-                dataType: "json",
-                contentType: "application/json",
-                crossDomain: true,
-                xhrFields: {
-                    withCredentials: true
-                },
-                success: (response) => {
-                    console.log(response);
-                    location.href = "profile.html"
-                },
-                error: (error) => {
-                    console.log(error);
-                }
-            });
-        });
-
-        $("#delete-btn").click((e) => {
-            e.preventDefault();
-
-            $.ajax({
-                url: "http://localhost:8000/accounts/profile/delete/",
-                type: "DELETE",
-                data: JSON.stringify({access: localStorage.getItem("access")}),
-                dataType: "json",
-                contentType: "application/json",
-                crossDomain: true,
-                xhrFields: {
-                    withCredentials: true
-                },
-                success: (response) => {
-                    localStorage.removeItem("access");
-                    localStorage.removeItem("refresh");
-
-                    alert("회원 탈퇴 완료");
-
-                    location.href = "../index.html";
-                },
-                error: (error) => {
-                    console.log(error);
-                }
-            });
-        });
-    </script>
+    </nav>
 </body>
 </html>
