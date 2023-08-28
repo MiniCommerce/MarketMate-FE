@@ -15,12 +15,13 @@ async function apiPost(url, data) {
   }
 }
 
-async function apiGet(url) {
+async function apiGet(url, token) {
   try {
     const res = await fetch(url, {
       method: "GET",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Authorization": `Token ${token}`
       }
     });  
     const answer = await res.json();
@@ -48,12 +49,13 @@ async function apiDelete(url, data) {
   }
 }
 
-async function apiPut(url, data) {
+async function apiPut(url, data, token) {
   try {
     const res = await fetch(url, {
       method: "PUT",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Authorization": `Token ${token}`
       },
       body: JSON.stringify(data)
     });
