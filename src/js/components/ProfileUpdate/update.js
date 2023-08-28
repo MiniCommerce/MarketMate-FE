@@ -1,6 +1,6 @@
-import { apiGet, apiPut } from '../utils/fetchAPI.js';
-import { URL } from '../data/index.js';
-import { getSessionStorage } from '../utils/storage.js';
+import { apiAuthGet, apiAuthPut } from '../../utils/fetchAPI.js';
+import { URL } from '../../data/index.js';
+import { getSessionStorage } from '../../utils/storage.js';
 
 const $updatebtn = document.querySelector("#update-btn");
 
@@ -9,7 +9,7 @@ async function fetchData() {
     try {
         const token = getSessionStorage("token");
 
-        const data = await apiGet(URL.buyerUpdateURL, token);
+        const data = await apiAuthGet(URL.buyerUpdateURL, token);
         const nicknameField = document.getElementById("nickname");
         const numberField = document.getElementById("number");
         const shippingAddressField = document.getElementById("shipping_address");
@@ -33,7 +33,7 @@ async function update(event) {
         const numberField = document.getElementById("number");
         const shippingAddressField = document.getElementById("shipping_address");
 
-        await apiPut(URL.buyerUpdateURL, {
+        await apiAuthPut(URL.buyerUpdateURL, {
             nickname: nicknameField.value,
             number: numberField.value,
             shipping_address: shippingAddressField.value
