@@ -26,31 +26,34 @@
     </form>
 
     <script>
-        $("#login-form").submit((e) => {
+        // login 버튼 클릭시 토큰 받아옴
+        const loginBtn = document.querySelector("#submit-btn");
+
+        loginBtn.addEventListener("click", (e) => {
             e.preventDefault();
-
-            const request = {
-                email: $("#email").val(),
-                password: $("#password").val(),
+            let email = document.getElementById("email").value
+            let password = document.getElementById("password").value
+            let data = {
+                email: email,
+                password: password
             }
-
-            $.ajax({
-                url: "http://localhost:8000/accounts/login/",
-                type: "POST",
-                data: JSON.stringify(request),
-                dataType: "json",
-                contentType: "application/json",
-                crossDomain: true,
-                xhrFields: {
-                    withCredentials: true
+            // fetch로 http://127.0.0.1:8000/accounts/logindrf/에 post로 전송
+            fetch("http://127.0.0.1:8000/user/login/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
                 },
-                success: (response) => {
-                    localStorage.setItem("access", response.token.access);
-                    localStorage.setItem("refresh", response.token.refresh);
-                    location.href = "../index.html";
-                },
-                error: (error) => {
-                    console.log(error);
+                body: JSON.stringify(data)
+            }).then(function(response){
+                return response.json();
+            }).then(function(data){
+                const token = data["token"]
+                // 로컬 스토리지에 token 저장
+                if (token) {
+                    localStorage.setItem("token", token);    
+                }
+                else {
+                    alert("로그인에 실패하였습니다. 다시 입력해주세요.");
                 }
             });
         });
