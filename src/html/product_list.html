@@ -13,37 +13,22 @@
 <body>
     <h1>상품 목록</h1>
 
-    <ul id="list">
-    </ul>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>상품명</th>
+                <th>카테고리</th>
+                <th>가격</th>
+                <th>판매상태</th>
+                <th>판매자</th>
+            </tr>
+        </thead>
+
+        <tbody></tbody>
+    </table>
 
     <a href="product_register.html">상품 등록</a>
 
-    <script>
-        $(document).ready(() => {
-            $.ajax({
-                url: "http://localhost:8000/products/list/",
-                type: "GET",
-                contentType: "application/json",
-                crossDomain: true,
-                xhrFields: {
-                    withCredentials: true
-                },
-                success: (response) => {
-                    for (var i = 0; i < response.length; i++) {
-                        $("#list").append(`<li><a href="product_detail.html" id="${response[i].id}">${response[i].name}</a></li>`)
-                    }
-                },
-                error: (error) => {
-                    console.log(error);
-                }
-            });
-        });
-
-        $("#list").click((e) => {
-            localStorage.setItem("product_id", event.target.id);
-
-            location.href = "product_detail.html"
-        });
-    </script>
+    <script src="../js/components/Product/productList.js" type="module"></script>
 </body>
 </html>

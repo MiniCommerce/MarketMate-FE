@@ -5,16 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.7.0.js"
-        integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
-
-    <!-- axios -->
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
     <!-- portone -->
     <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
-
 
     <title>Untitle-Project-FE</title>
 </head>
@@ -23,127 +15,17 @@
 
     <ul id="list">
         <li id="id" style="display:none"></li>
-        <li id="buyer-email" style="display:none"></li>
-        <li id="buyer-name" style="display:none"></li>
-        <li id="buyer-tel" style="display:none"></li>
-        <li id="buyer-address" style="display:none"></li>
         <li id="name"></li>
         <li id="category"></li>
         <li id="price"></li>
         <li id="amount"></li>
         <li id="desc"></li>
         <li id="seller"></li>
-        <li><button onclick="ordering()">구매하기</button></li>
-        <li><button onclick="cartAdd()">장바구니</button></li>
+        <li>수량: <input type="number" id="quantity" min="1" value="1"></li>
+        <li><button id="cart">장바구니</button></li>
+        <li><button id="order">구매하기</button></li>
     </ul>
 
-    <script>
-        $(document).ready(() => {
-            $.ajax({
-                url: "http://localhost:8000/products/detail/",
-                type: "GET",
-                data: `product_id=${localStorage.getItem("product_id")}`,
-                dataType: "json",
-                contentType: "application/json",
-                crossDomain: true,
-                xhrFields: {
-                    withCredentials: true
-                },
-                success: (response) => {
-                    $("#id").text(response.id)
-                    $("#name").text(`상품명: ${response.name}`);
-                    $("#category").text(`카테고리: ${response.category}`);
-                    $("#price").text(`가격: ${response.price}`);
-                    $("#amount").text(`수량: ${response.amount}`);
-                    $("#desc").text(`설명: ${response.desc}`);
-                    $("#seller").text(`판매자: ${response.seller}`);
-                },
-                error: (error) => {
-                    console.log(error);
-                }
-            });
-        });
-
-        $(document).ready(() => {
-            if (localStorage.getItem("access")) {
-                $.ajax({
-                    url: "http://localhost:8000/accounts/profile/",
-                    type: "POST",
-                    headers: {Authorization: `Bearer ${localStorage.getItem("access")}`},
-                    dataType: "json",
-                    contentType: "application/json",
-                    crossDomain: true,
-                    xhrFields: {
-                        withCredentials: true
-                    },
-                    success: (response) => {
-                        $("#buyer-email").text(response.email);
-                        $("#buyer-name").text(response.name);
-                        $("#buyer-tel").text(response.phone);
-                        $("#buyer-address").text(response.address);
-                    },
-                    error: (error) => {
-                        console.log(error);
-                    }
-                });
-            }
-        });
-
-        function cartAdd() {
-            const request = {
-                product_id: $("#id").text(),
-                amount: 1
-            }
-
-            $.ajax({
-                url: "http://localhost:8000/carts/add/",
-                type: "POST",
-                headers: { Authorization: `Bearer ${localStorage.getItem("access")}` },
-                data: JSON.stringify(request),
-                dataType: "json",
-                contentType: "application/json",
-                crossDomain: true,
-                xhrFields: {
-                    withCredentials: true
-                },
-                success: (response) => {
-                    alert("장바구니에 담았습니다!");
-                    location.href = "cart.html";
-                },
-                error: (error) => {
-                    console.log(error);
-                }
-            });
-        }
-
-        function ordering() {
-            const request = {
-                product_id: $("#id").text(),
-                title: `${$("#name").text().split(": ")[1]} 1건`,
-                status: "ready",
-                price: $("#price").text().split(": ")[1]
-            }
-
-            $.ajax({
-                url: "http://localhost:8000/purchases/order/",
-                type: "POST",
-                headers: { Authorization: `Bearer ${localStorage.getItem("access")}` },
-                data: JSON.stringify(request),
-                dataType: "json",
-                contentType: "application/json",
-                crossDomain: true,
-                xhrFields: {
-                    withCredentials: true
-                },
-                success: (response) => {
-                    localStorage.setItem("order_id", response.id);
-                    location.href = "order.html";
-                },
-                error: (error) => {
-                    alert(error);
-                }
-            });
-        }
-    </script>
+    <script src="../js/components/Product/productDetail.js" type="module"></script>
 </body>
 </html>
