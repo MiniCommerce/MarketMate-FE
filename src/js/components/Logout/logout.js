@@ -7,18 +7,16 @@ async function logout(event) {
 
     try {
         const token = storage.getSessionStorage("token");
-        const ans = await API.apiAuthGet(URL.logoutURL, token);
-        const status = ans["status"];
+        const response = await API.apiAuthGet(URL.logoutURL, token);
         
-        if (status === 200) {
+        if (response.status === 200) {
             storage.removeSessionStorage("token");
             home.goToHome();
-        }
-        else {
+        } else {
             alert("로그아웃 실패");
         }
     } catch (err) {
-      console.log(err);
+        console.log(err);
     }
 }
 
