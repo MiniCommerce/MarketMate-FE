@@ -4,43 +4,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
-    
     <title>Untitle-Project-FE</title>
 </head>
 <body>
-    <h1 id="welcome"></h1>
-    <input type="checkbox" id="">
-    <script>
-        $(document).ready(() => {
-            $.ajax({
-                url: "http://localhost:8000/carts/list/",
-                type: "GET",
-                headers: { Authorization: `Bearer ${localStorage.getItem("access")}` },
-                dataType: "json",
-                contentType: "application/json",
-                crossDomain: true,
-                xhrFields: {
-                    withCredentials: true
-                },
-                success: (response) => {
-                    $("#welcome").text(`${response[0].user}님의 장바구니`);
-                    
-                    for(var i = 0; i < response.length; i++) {
-                        $("#welcome").after(`<ul id="${response[i].id}"></ul>`);
+    <h1 id="intro"></h1>
+    
+    <table border="1">
+        <thead>
+            <tr>
+                <th>선택</th>
+                <th>상품명</th>
+                <th>수량</th>
+                <th>금액</th>
+                <th>총액</th>
+                <th>삭제</th>
+            </tr>
+        </thead>
 
-                        $(`#${response[i].id}`).append(`<li><input type="checkbox"></li>`);
-                        $(`#${response[i].id}`).append(`<li>상품명: ${response[i].product}</li>`);
-                        $(`#${response[i].id}`).append(`<li>수량: ${response[i].amount}</li>`);
-                        $(`#${response[i].id}`).append(`<li>금액: ${response[i].price}</li>`);
-                    }
-                },
-                error: (error) => {
-                    console.log(error);
-                }
-            });
-        });
-    </script>
+        <tbody></tbody>
+    </table>
+
+    <button class="order-btn">구매</button>
+
+    <script src="../js/components/Cart/index.js" type="module"></script>
 </body>
 </html>

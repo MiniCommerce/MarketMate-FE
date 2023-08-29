@@ -170,4 +170,5 @@ async function apiAuthPatch(url, data, token="") {
     console.log(err);
   }
 }
+
 export { apiPost, apiGet, apiPut, apiPatch, apiDelete, apiAuthPost, apiAuthGet, apiAuthDelete, apiAuthPatch, apiAuthPut };

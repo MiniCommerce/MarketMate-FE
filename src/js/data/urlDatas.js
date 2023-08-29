@@ -6,3 +6,9 @@ export const deleteUserURL = "http://127.0.0.1:8000/user/delete/";
 export const changePassWordURL = "http://127.0.0.1:8000/user/changepw/";
 export const buyerUpdateURL = "http://127.0.0.1:8000/user/buyer/update/";
 export const sellerUpdateURL = "http://127.0.0.1:8000/user/seller/update/";
+
+// 장바구니 관련 URL
+export const cartAddURL = "http://127.0.0.1:8000/carts/add/";
+export const cartListURL = "http://127.0.0.1:8000/carts/list/";
+export const cartUpdateURL = "http://127.0.0.1:8000/carts/update/";
+export const cartDeleteURL = "http://127.0.0.1:8000/carts/delete/";
