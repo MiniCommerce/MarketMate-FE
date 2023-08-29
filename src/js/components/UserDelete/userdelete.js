@@ -1,6 +1,6 @@
 import { apiAuthPost} from '../../utils/fetchAPI.js';
 import { URL } from '../../data/index.js';
-import { getSessionStorage } from '../../utils/storage.js';
+import { getSessionStorage,removeSessionStorage } from '../../utils/storage.js';
 import { home } from "../Home/index.js";
 
 const $deleteBtn = document.querySelector("#user_delete_btn");
