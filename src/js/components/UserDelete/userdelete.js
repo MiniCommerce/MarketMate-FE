@@ -1,6 +1,6 @@
 import { apiAuthPost} from '../../utils/fetchAPI.js';
 import { URL } from '../../data/index.js';
-import { getSessionStorage,removeSessionStorage } from '../../utils/storage.js';
+import { getSessionStorage } from '../../utils/storage.js';
 import { home } from "../Home/index.js";
 
 const $deleteBtn = document.querySelector("#user_delete_btn");
@@ -19,7 +19,6 @@ async function deleteUser() {
         console.log(response)
         if (response.status === 200) {
             alert("회원 탈퇴가 완료되었습니다.");
-            removeSessionStorage("token");
             home.goToHome();
             logout();
         } else {
