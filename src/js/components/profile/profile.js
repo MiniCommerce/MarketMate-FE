@@ -11,7 +11,6 @@ async function fetchUserRole(event) {
     try {
         const token = getSessionStorage("token"); 
         const response = await apiAuthGet(URL.userDiscriminationURL, token); 
-        console.log(response)
 
         if (response.message === '판매자') {
             $buyerprofile.style.display = "none";
