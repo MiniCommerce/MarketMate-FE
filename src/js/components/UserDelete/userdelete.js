@@ -21,6 +21,7 @@ async function deleteUser() {
             alert("회원 탈퇴가 완료되었습니다.");
             removeSessionStorage("token");
             home.goToHome();
+            logout();
         } else {
             alert("회원 탈퇴 실패");
         }
