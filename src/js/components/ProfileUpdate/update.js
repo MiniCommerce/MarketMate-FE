@@ -1,9 +1,8 @@
 import { apiAuthGet, apiAuthPut } from '../../utils/fetchAPI.js';
 import { URL } from '../../data/index.js';
-import { getSessionStorage } from '../../utils/storage.js';
+import { getSessionStorage, setSessionStorage } from '../../utils/storage.js';
 
 const $updatebtn = document.querySelector("#update-btn");
-
 
 async function fetchData() {
     try {
@@ -23,7 +22,6 @@ async function fetchData() {
     }
 }
 
-
 async function update(event) {
     event.preventDefault();
 
@@ -33,19 +31,21 @@ async function update(event) {
         const numberField = document.getElementById("number");
         const shippingAddressField = document.getElementById("shipping_address");
 
-        await apiAuthPut(URL.buyerUpdateURL, {
+        const response = await apiAuthPut(URL.buyerUpdateURL, {
             nickname: nicknameField.value,
             number: numberField.value,
             shipping_address: shippingAddressField.value
         }, token);
+
+        if (response.token) {
+            setSessionStorage("token", response.token);
+        }
 
     } catch (err) {
         console.log(err);
     }
 }
 
-
 window.addEventListener("load", fetchData);
-
 
 $updatebtn.addEventListener("click", update);
