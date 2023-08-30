@@ -3,37 +3,40 @@ import { storage } from "../../utils/index.js";
 import { URL } from "../../data/index.js";
 
 
-const token = storage.getSessionStorage("token")
-const submitBtn = document.querySelector('#submit-btn');
-const imageInput = document.querySelector('#image-input');
+const token = storage.getSessionStorage("token");
+const submitBtn = document.querySelector("#submit-btn");
+const imageInput = document.querySelector("#image-input");
+const thumbnailImageInput = document.querySelector("#thumbnail-image-input");
 
+async function create_product(event) {
+    event.preventDefault();
 
-submitBtn.addEventListener("click", async (e) => {
-    e.preventDefault();
+    const category = document.getElementById("category").value;
+    const name = document.getElementById("name").value;
+    const price = document.getElementById("price").value;
+    const amount = document.getElementById("amount").value;
+    const desc = document.getElementById("desc").value;
+    const status = document.getElementById("status").value;
+    const thumbnail_image = thumbnailImageInput.files[0];
+    const uploadedImages = imageInput.files;
 
-    const category = document.getElementById('category').value;
-    const name = document.getElementById('name').value;
-    const price = document.getElementById('price').value;
-    const amount = document.getElementById('amount').value;
-    const desc = document.getElementById('desc').value;
-    const status = document.getElementById('status').value;
-    const uploadedImage = imageInput.files[0];
+    const formData = new FormData();
 
-    const data = {
-        category: category,
-        product_name: name,
-        price: price,
-        amount: amount,
-        desc: desc,
-        status: status,
-        // uploaded_images: [uploadedImage],
+    formData.append("category", category);
+    formData.append("product_name", name);
+    formData.append("price", price);
+    formData.append("amount", amount);
+    formData.append("desc", desc);
+    formData.append("status", status);
+    formData.append("thumbnail_image", thumbnail_image);
+
+    // 이미지 파일들 추가
+    for (let i = 0; i < uploadedImages.length; i++) {
+        formData.append("uploaded_images", uploadedImages[i]);
     }
-    console.log(data)
-
-
-
+    
     try {
-        const productRegister = await API.apiAuthPost(URL.productRegisterURL, data, token);
+        const productRegister = await API.apiAuthFormDataPost(URL.productRegisterURL, formData, token);
 
         if (productRegister) {
             alert("상품을 등록했습니다")
@@ -44,6 +47,20 @@ submitBtn.addEventListener("click", async (e) => {
     catch (err) {
         alert(err);
     }
+}
 
+function check_image_count(event) {
+    // 최대 등록 가능한 개수
+    const maxFiles = 10; 
+    const selectedFiles = event.target.files;
+    
+    if (selectedFiles.length > maxFiles) {
+        // 파일 선택 취소
+        event.preventDefault();
+        event.target.value = "";
+        alert("최대 등록 가능 개수는 10개 입니다.");
+    } 
+}
 
-})
+submitBtn.addEventListener("click", create_product);
+imageInput.addEventListener("change", check_image_count);

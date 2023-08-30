@@ -5,9 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script src="https://code.jquery.com/jquery-3.7.0.js"
-        integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
-
     <title>상품 등록</title>
 </head>
 <body>
@@ -41,7 +38,12 @@
                 </select>
             </li>
             <li>
-                <input type="file" id="image-input" accept="image/*">
+                <label for="">대표이미지</label>
+                <input type="file" id="thumbnail-image-input" accept="image/*">
+            </li>
+            <li>
+                <label for="">상세이미지들</label>
+                <input type="file" id="image-input" accept="image/*" multiple>
             </li>
         </ul>
         <input type="submit" id="submit-btn" value="등록">
