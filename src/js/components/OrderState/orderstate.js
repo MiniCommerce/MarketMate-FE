@@ -1,4 +1,4 @@
-import { apiAuthGet } from "../../utils/fetchAPI.js";
+import { apiAuthGet,apiAuthPost } from "../../utils/fetchAPI.js";
 import { URL } from "../../data/index.js";
 import { getSessionStorage } from '../../utils/storage.js';
 
@@ -24,7 +24,6 @@ async function fetchOrders() {
 
     orders.forEach(order => {
         const row = document.createElement('tr');
-        
         const productImgCell = document.createElement('td');
         const img = document.createElement('img');
         const imgsrc = order.product_images[0]; 
@@ -54,6 +53,18 @@ async function fetchOrders() {
         deliveryStatusCell.textContent = order.status;
         row.appendChild(deliveryStatusCell);
 
+        if(order.status == 'paid'){
+        const refundCell = document.createElement('td');
+        const refundButton = document.createElement('button');
+        refundButton.textContent = '환불';
+        refundButton.addEventListener('click', () => {
+            cancelPay(order.purchase
+              .imp_uid, order.purchase
+              .merchant_uid);
+        });
+        refundCell.appendChild(refundButton);
+        row.appendChild(refundCell);
+        }
         tableBody.appendChild(row);
     });
 }
@@ -62,6 +73,29 @@ function formatDate(dateString) {
     const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
     return date.toLocaleDateString('ko-KR', options);
   }
+
+  function cancelPay(imp_uid, merchant_uid) {
+    const token = getSessionStorage("token");
+    let data = {
+        imp_uid: imp_uid,
+        merchant_uid: merchant_uid,
+        reason: "테스트 결제 환불"
+    };
+
+    apiAuthPost(URL.refundURL, data, token)
+        .then(response => {
+            if (response.message === 'Refund successful') {
+                loadOrders(); 
+            } else {
+                console.error('Refund failed:', response);
+            }
+        })
+        .catch(error => {
+            console.error('Error refunding:', error);
+        });
+}
+
+    
 
 async function loadOrders() {
     const orders = await fetchOrders();
