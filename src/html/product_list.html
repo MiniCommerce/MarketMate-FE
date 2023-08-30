@@ -5,10 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script src="https://code.jquery.com/jquery-3.7.0.js"
-        integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
-
-    <title>Untitle-Project-FE</title>
+    <title>상품 목록</title>
 </head>
 <body>
     <h1>상품 목록</h1>
@@ -17,33 +14,6 @@
     </ul>
 
     <a href="product_register.html">상품 등록</a>
-
-    <script>
-        $(document).ready(() => {
-            $.ajax({
-                url: "http://localhost:8000/products/list/",
-                type: "GET",
-                contentType: "application/json",
-                crossDomain: true,
-                xhrFields: {
-                    withCredentials: true
-                },
-                success: (response) => {
-                    for (var i = 0; i < response.length; i++) {
-                        $("#list").append(`<li><a href="product_detail.html" id="${response[i].id}">${response[i].name}</a></li>`)
-                    }
-                },
-                error: (error) => {
-                    console.log(error);
-                }
-            });
-        });
-
-        $("#list").click((e) => {
-            localStorage.setItem("product_id", event.target.id);
-
-            location.href = "product_detail.html"
-        });
-    </script>
+    <script src="../js/components/Product/productList.js" type="module"></script>
 </body>
 </html>
