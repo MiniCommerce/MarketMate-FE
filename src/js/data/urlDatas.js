@@ -13,6 +13,7 @@ export const productListURL = "http://127.0.0.1:8000/products/list/";
 export const productDetailURL = "http://127.0.0.1:8000/products/detail/";
 export const productRegisterURL = "http://127.0.0.1:8000/products/register/";
 export const productUpdateURL = "http://127.0.0.1:8000/products/update/";
+export const mysaleProduct = "http://127.0.0.1:8000/products/mysale/";
 
 // 장바구니 관련 URL
 export const cartAddURL = "http://127.0.0.1:8000/carts/add/";

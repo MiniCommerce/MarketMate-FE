@@ -18,7 +18,7 @@ async function productOnload() {
         <td class="name"><a href="product_detail.html">${res[i].product_name}</a></td>
         <td class="category">${res[i].category}</td>
         <td class="price">${res[i].price}</td>
-        <td class="status">${res[i].status}</td>
+        <td class="product_status">${res[i].product_status}</td>
         <td class="seller">${res[i].seller}</td>
       </tr>`);
     }
