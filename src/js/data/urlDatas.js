@@ -28,3 +28,9 @@ export const prepurchaseURL = "http://127.0.0.1:8000/purchases/prepurchase/";
 export const postpurchaseURL = "http://127.0.0.1:8000/purchases/postpurchase/";
 export const refundURL = "http://127.0.0.1:8000/purchases/refund/";
 export const buyerOrderURL = "http://127.0.0.1:8000/purchases/buyer_orders/";
+
+// 후기 관련 URL
+export const reviewlistURL = "http://127.0.0.1:8000/reviews/list/";
+export const reviewWriteURL = "http://127.0.0.1:8000/reviews/write/"
+export const reviewUpdateURL = "http://127.0.0.1:8000/reviews/update/"
+export const reviewDeleteURL = "http://127.0.0.1:8000/reviews/delete/"
