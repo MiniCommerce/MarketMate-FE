@@ -171,4 +171,21 @@ async function apiAuthPatch(url, data, token="") {
   }
 }
 
-export { apiPost, apiGet, apiPut, apiPatch, apiDelete, apiAuthPost, apiAuthGet, apiAuthDelete, apiAuthPatch, apiAuthPut };
+async function apiAuthFormDataPost(url, formdata, token="") {
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Authorization": `Token ${token}`
+      },
+      body: formdata
+    });
+    const answer = await res.json();
+
+    return answer;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export { apiPost, apiGet, apiPut, apiPatch, apiDelete, apiAuthPost, apiAuthGet, apiAuthDelete, apiAuthPatch, apiAuthPut, apiAuthFormDataPost };

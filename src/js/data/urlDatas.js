@@ -34,3 +34,9 @@ export const reviewlistURL = "http://127.0.0.1:8000/reviews/list/";
 export const reviewWriteURL = "http://127.0.0.1:8000/reviews/write/"
 export const reviewUpdateURL = "http://127.0.0.1:8000/reviews/update/"
 export const reviewDeleteURL = "http://127.0.0.1:8000/reviews/delete/"
+
+// 문의
+export const questionListURL = "http://127.0.0.1:8000/questions/list/";
+export const questionWriteURL = "http://127.0.0.1:8000/questions/write/";
+export const questionUpdateURL = "http://127.0.0.1:8000/questions/update/";
+export const questionDeleteURL = "http://127.0.0.1:8000/questions/delete/";

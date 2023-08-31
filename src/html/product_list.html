@@ -5,28 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script src="https://code.jquery.com/jquery-3.7.0.js"
-        integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
-
     <title>Untitle-Project-FE</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     <h1>상품 목록</h1>
-
-    <table border="1">
-        <thead>
-            <tr>
-                <th>상품명</th>
-                <th>카테고리</th>
-                <th>가격</th>
-                <th>판매상태</th>
-                <th>판매자</th>
-            </tr>
-        </thead>
-
-        <tbody></tbody>
-    </table>
-
+    <!-- 키워드 검색 -->
+    <div>
+        <form action="">
+            <input type="text" id="search-text">
+            <input type="submit" id="search-btn" value="검색">
+        </form>
+    </div>
+    <!-- 카테고리 선택 -->
+    <div>
+        
+    </div>
+    <!-- 상품 리스트 -->
+    <div class="product-list">
+    </div>
+    
     <a href="product_register.html">상품 등록</a>
 
     <script src="../js/components/Product/productList.js" type="module"></script>
