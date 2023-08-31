@@ -1,9 +1,10 @@
 import { API } from "../../utils/index.js";
 import { storage } from "../../utils/index.js";
-import { URL } from "../../data/index.js";
+import { URL, category } from "../../data/index.js";
 
 const $productListContainer = document.querySelector(".product-list");
 const $searchBtn = document.querySelector("#search-btn");
+const $categoryContainer = document.querySelector(".category-list-btn");
 
 function create_card(data) {
   const $cardContainer = document.createElement("div");
@@ -89,6 +90,53 @@ async function productOnload() {
   } catch (err) {
     alert(err);
   }
+}
+
+async function select_category (event, category_name) {
+  event.preventDefault();
+
+  $productListContainer.innerHTML = "";
+  
+  try {
+    const res = await API.apiGet(`${URL.productListURL}?category=${category_name}`);
+
+    // 상품 목록 출력
+    for (let i = 0; i < res.length; i++) {
+      const data = res[i];
+      const $aTag = document.createElement("a");
+      const $productItem = create_card(data);
+      
+      $aTag.setAttribute("id", data.id);
+      $aTag.setAttribute("href", "product_detail.html");
+      $aTag.classList.add("product-link");
+      $aTag.append($productItem);
+
+      $productListContainer.append($aTag);
+    }
+    
+    // 상품명 클릭시 이벤트 등록
+    const $anchors = document.querySelectorAll(".product-link");
+    $anchors.forEach((anchor) => {
+      anchor.addEventListener("click", async (event) => {
+        storage.setSessionStorage("product_id", anchor.id);
+      })
+    });
+  } catch (err) {
+    alert(err);
+  }
+}
+
+// 카테고리 버튼들 생성
+for (let i = 0; i < category.category_list.length; i++) {
+  const btn = document.createElement("button");
+  btn.value = category.category_list[i];
+  btn.innerText = category.category_list[i];
+
+  btn.addEventListener("click", function(event) {
+    const category_name = category.category_list[i];
+    select_category(event, category_name);
+  });
+  $categoryContainer.appendChild(btn);
 }
 // HTML 문서 전체가 로드 되었을 때 이벤트 등록
 document.addEventListener("DOMContentLoaded", productOnload);
