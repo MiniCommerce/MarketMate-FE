@@ -13,6 +13,7 @@ export const productListURL = "http://127.0.0.1:8000/products/list/";
 export const productDetailURL = "http://127.0.0.1:8000/products/detail/";
 export const productRegisterURL = "http://127.0.0.1:8000/products/register/";
 export const productUpdateURL = "http://127.0.0.1:8000/products/update/";
+export const mysaleProduct = "http://127.0.0.1:8000/products/mysale/";
 
 // 장바구니 관련 URL
 export const cartAddURL = "http://127.0.0.1:8000/carts/add/";
@@ -27,6 +28,12 @@ export const prepurchaseURL = "http://127.0.0.1:8000/purchases/prepurchase/";
 export const postpurchaseURL = "http://127.0.0.1:8000/purchases/postpurchase/";
 export const refundURL = "http://127.0.0.1:8000/purchases/refund/";
 export const buyerOrderURL = "http://127.0.0.1:8000/purchases/buyer_orders/";
+
+// 후기 관련 URL
+export const reviewlistURL = "http://127.0.0.1:8000/reviews/list/";
+export const reviewWriteURL = "http://127.0.0.1:8000/reviews/write/"
+export const reviewUpdateURL = "http://127.0.0.1:8000/reviews/update/"
+export const reviewDeleteURL = "http://127.0.0.1:8000/reviews/delete/"
 
 // 문의
 export const questionListURL = "http://127.0.0.1:8000/questions/list/";

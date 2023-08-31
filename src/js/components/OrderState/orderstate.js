@@ -27,8 +27,7 @@ async function fetchOrders() {
         const productImgCell = document.createElement('td');
         const img = document.createElement('img');
         const imgsrc = order.product_images[0]; 
-        const formattedImgSrc = imgsrc.replace('/media/', '');
-        img.src = `http://127.0.0.1:8000/${formattedImgSrc}`;
+        img.src = `http://127.0.0.1:8000/${imgsrc}`;
         img.alt = 'Product Image';
         productImgCell.appendChild(img);
         row.appendChild(productImgCell);
