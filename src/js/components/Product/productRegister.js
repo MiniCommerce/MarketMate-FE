@@ -1,12 +1,13 @@
 import { API } from "../../utils/index.js";
 import { storage } from "../../utils/index.js";
-import { URL } from "../../data/index.js";
+import { URL, category } from "../../data/index.js";
 
 
 const token = storage.getSessionStorage("token");
 const submitBtn = document.querySelector("#submit-btn");
 const imageInput = document.querySelector("#image-input");
 const thumbnailImageInput = document.querySelector("#thumbnail-image-input");
+const categorySelect = document.querySelector("#category");
 
 async function create_product(event) {
     event.preventDefault();
@@ -60,6 +61,14 @@ function check_image_count(event) {
         event.target.value = "";
         alert("최대 등록 가능 개수는 10개 입니다.");
     } 
+}
+
+// 카테고리 옵션 생성
+for (let i = 0; i < category.category_list.length; i++) {
+    const option = document.createElement('option');
+    option.value = category.category_list[i];
+    option.text = category.category_list[i];
+    categorySelect.appendChild(option);
 }
 
 submitBtn.addEventListener("click", create_product);
