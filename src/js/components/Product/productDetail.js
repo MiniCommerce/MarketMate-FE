@@ -1,7 +1,7 @@
 import { API } from "../../utils/index.js";
 import { storage } from "../../utils/index.js";
 import { URL } from "../../data/index.js";
-
+import { question } from "../Question/index.js";
 
 const $id = document.querySelector("#id");
 const $name = document.querySelector("#name");
@@ -14,14 +14,19 @@ const $quantity = document.querySelector("#quantity");
 
 const $cartBtn = document.querySelector("#cart");
 const $orderBtn = document.querySelector("#order");
+const $questionBtn = document.querySelector("#question-btn")
+const $questionWriteBtn = document.querySelector("#question-write-btn")
 
 const token = storage.getSessionStorage("token");
+const product_id = storage.getSessionStorage("product_id");
 
 // HTML 문서 전체가 로드 되었을 때의 이벤트
 async function productOnload() {
     try {
         // 상품 상세 내용 출력
-        const res = await API.apiGet(`${URL.productDetailURL}?product_id=${storage.getSessionStorage("product_id")}`);
+        
+        const url = `${URL.productDetailURL}?product_id=${product_id}`;
+        const res = await API.apiGet(url);
 
         if (res) {
             $id.innerText = res.id;
@@ -100,6 +105,7 @@ async function goUpdate() {
     }
 }
 
+
 // HTML 문서 전체가 로드 되었을 때 이벤트 등록
 document.addEventListener("DOMContentLoaded", productOnload);
 // 장바구니 버튼 이벤트 등록
@@ -108,3 +114,11 @@ $cartBtn.addEventListener("click", cartAdd);
 $orderBtn.addEventListener("click", orderStart);
 // 수정하기 버튼 이벤트 등록
 $updateBtn.addEventListener("click", goUpdate);
+// 문의조회
+$questionBtn.addEventListener("click", function() {
+    question.get_question_list(product_id);
+});
+// 문의등록
+$questionWriteBtn.addEventListener("click", function() {
+    question.write_question(product_id, token);
+});

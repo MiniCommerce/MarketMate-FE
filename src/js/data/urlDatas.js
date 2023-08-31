@@ -27,3 +27,9 @@ export const prepurchaseURL = "http://127.0.0.1:8000/purchases/prepurchase/";
 export const postpurchaseURL = "http://127.0.0.1:8000/purchases/postpurchase/";
 export const refundURL = "http://127.0.0.1:8000/purchases/refund/";
 export const buyerOrderURL = "http://127.0.0.1:8000/purchases/buyer_orders/";
+
+// 문의
+export const questionListURL = "http://127.0.0.1:8000/questions/list/";
+export const questionWriteURL = "http://127.0.0.1:8000/questions/write/";
+export const questionUpdateURL = "http://127.0.0.1:8000/questions/update/";
+export const questionDeleteURL = "http://127.0.0.1:8000/questions/delete/";
