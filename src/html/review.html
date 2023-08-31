@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상품 후기</title>
+</head>
+<body>
+    <ul class="review-list">
+    </ul>
+<form>
+    <label for="score">점수</label>
+    <input type="number" id="score" max="5" min="0">
+    <label for="review-write">후기 작성</label>
+    <textarea name="review-write" id="review-write" cols="30" rows="10"></textarea>
+    <input type="submit" id="review-write-btn" value="작성">
+</form>
+<script type="module" src="/src/js/components/Review/index.js"></script>
+</body>
+</html>

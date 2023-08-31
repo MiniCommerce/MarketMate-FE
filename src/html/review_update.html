@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상품 후기 수정</title>
+</head>
+<body>
+<form>
+    <label for="update-score">점수</label>
+    <input type="number" id="update-score" max="5" min="0">
+    <label for="review-update">후기 작성</label>
+    <textarea name="review-update" id="review-update" cols="30" rows="10"></textarea>
+    <input type="submit" id="review-update-btn" value="수정">
+</form>
+<script type="module" src="/src/js/components/Review/reviewUpdate.js"></script>
+</body>
+</html>
