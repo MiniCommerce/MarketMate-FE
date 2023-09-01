@@ -11,6 +11,8 @@ async function logout(event) {
         
         if (response.status === 200) {
             storage.removeSessionStorage("token");
+            storage.removeSessionStorage("user_id");
+            storage.removeSessionStorage("member");
             home.goToHome();
         } else {
             alert("로그아웃 실패");

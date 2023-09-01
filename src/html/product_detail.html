@@ -9,6 +9,7 @@
     <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 
     <title>Untitle-Project-FE</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     <h1>상품 상세</h1>
@@ -23,15 +24,18 @@
         <li id="amount"></li>
         <li id="desc"></li>
         <li id="seller"></li>
-        <li>수량: <input type="number" id="quantity" min="1" value="1"></li>
         <li><button id="cart">장바구니</button></li>
         <li><button id="order">구매하기</button></li>
-        <li><button id="update">수정하기</button></li>
         <li><button id="question-btn">문의조회</button></li>
-        <li><button id="question-write-btn">문의하기</button></li>
     </ul>
     <a href="review.html">상품 후기</a>
-
+    <!-- 문의 작성 -->
+    <div class="write-question">
+        <textarea name="" id="question-desc" cols="30" rows="10"></textarea>
+        <button id="question-write-btn">문의하기</button>
+    </div>
+    <hr>
+    <!-- 문의 목록 -->
     <div class="question-container">
     </div>
 
