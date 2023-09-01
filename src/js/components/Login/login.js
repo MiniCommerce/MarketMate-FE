@@ -20,7 +20,9 @@ async function login(event) {
 
         if (token) {
             storage.setSessionStorage("token", token);
-            home.goToHome()
+            storage.setSessionStorage("user_id", ans["user_id"]);
+            storage.setSessionStorage("member", ans["member"]);
+            home.goToHome();
         }
         else {
             alert("로그인 실패");
