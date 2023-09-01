@@ -14,8 +14,9 @@ const $quantity = document.querySelector("#quantity");
 
 const $cartBtn = document.querySelector("#cart");
 const $orderBtn = document.querySelector("#order");
-const $questionBtn = document.querySelector("#question-btn")
-const $questionWriteBtn = document.querySelector("#question-write-btn")
+const $questionBtn = document.querySelector("#question-btn");
+const $questionWriteBtn = document.querySelector("#question-write-btn");
+const $imageList = document.querySelector(".image-list");
 
 const token = storage.getSessionStorage("token");
 const product_id = storage.getSessionStorage("product_id");
@@ -27,8 +28,17 @@ async function productOnload() {
         
         const url = `${URL.productDetailURL}?product_id=${product_id}`;
         const res = await API.apiGet(url);
-
+        
         if (res) {
+            const images = res["images"];
+            
+            for (let i = 0; i < images.length; i++) {
+                const $img = document.createElement("img");
+                $img.setAttribute("src", images[i].image);
+                
+                $imageList.append($img);
+            }
+
             $id.innerText = res.id;
             $name.innerText = `품명: ${res.product_name}`;
             $category.innerText = `카테고리: ${res.category}`;
