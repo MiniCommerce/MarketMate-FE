@@ -11,6 +11,7 @@ const $amount = document.querySelector("#amount");
 const $desc = document.querySelector("#desc");
 const $seller = document.querySelector("#seller");
 const $quantity = document.querySelector("#quantity");
+const $score = document.querySelector("#score")
 
 const $cartBtn = document.querySelector("#cart");
 const $orderBtn = document.querySelector("#order");
@@ -33,6 +34,7 @@ async function productOnload() {
             $name.innerText = `품명: ${res.product_name}`;
             $category.innerText = `카테고리: ${res.category}`;
             $price.innerText = `가격: ${res.price}`;
+            $score.innerText = `평점: ${res.score}`;
             $amount.innerText = `재고: ${res.amount}`;
             $desc.innerText = `상품 설명: ${res.desc}`;
             $seller.innerText = `판매자: ${res.seller}`;
