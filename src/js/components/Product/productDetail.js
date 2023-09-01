@@ -2,6 +2,7 @@ import { API } from "../../utils/index.js";
 import { storage } from "../../utils/index.js";
 import { URL } from "../../data/index.js";
 import { question } from "../Question/index.js";
+import { goToLogin } from "../Home/home.js";
 
 const $id = document.querySelector("#id");
 const $name = document.querySelector("#name");
@@ -15,11 +16,15 @@ const $score = document.querySelector("#score")
 
 const $cartBtn = document.querySelector("#cart");
 const $orderBtn = document.querySelector("#order");
-const $questionBtn = document.querySelector("#question-btn")
-const $questionWriteBtn = document.querySelector("#question-write-btn")
+const $questionBtn = document.querySelector("#question-btn");
+const $questionWriteBtn = document.querySelector("#question-write-btn");
+const $imageList = document.querySelector(".image-list");
+const $questionTextArea = document.querySelector(".write-quetion");
 
 const token = storage.getSessionStorage("token");
 const product_id = storage.getSessionStorage("product_id");
+const user_id = storage.getSessionStorage("user_id");
+const member = storage.getSessionStorage("member");
 
 // HTML 문서 전체가 로드 되었을 때의 이벤트
 async function productOnload() {
@@ -28,8 +33,17 @@ async function productOnload() {
         
         const url = `${URL.productDetailURL}?product_id=${product_id}`;
         const res = await API.apiGet(url);
-
+        
         if (res) {
+            const images = res["images"];
+            
+            for (let i = 0; i < images.length; i++) {
+                const $img = document.createElement("img");
+                $img.setAttribute("src", images[i].image);
+                
+                $imageList.append($img);
+            }
+
             $id.innerText = res.id;
             $name.innerText = `품명: ${res.product_name}`;
             $category.innerText = `카테고리: ${res.category}`;
@@ -38,6 +52,7 @@ async function productOnload() {
             $amount.innerText = `재고: ${res.amount}`;
             $desc.innerText = `상품 설명: ${res.desc}`;
             $seller.innerText = `판매자: ${res.seller}`;
+            question.set_seller_id(res.seller);
         }
     } catch (err) {
         alert(err);
@@ -46,6 +61,12 @@ async function productOnload() {
 
 // 장바구니 추가
 async function cartAdd() {
+    // 비로그인 유저
+    if (!(user_id)) {
+        goToLogin();
+        return;
+    }
+
     try {
         const data = {
             product_id: parseInt($id.innerText),
@@ -66,6 +87,12 @@ async function cartAdd() {
 
 // 구매 버튼 클릭 시 이벤트
 async function orderStart(event) {
+    // 비로그인 유저
+    if (!(user_id)) {
+        goToLogin();
+        return;
+    }
+
     try {
         const data = {
             product_id: parseInt($id.innerText),
@@ -107,20 +134,30 @@ async function goUpdate() {
     }
 }
 
-
 // HTML 문서 전체가 로드 되었을 때 이벤트 등록
 document.addEventListener("DOMContentLoaded", productOnload);
-// 장바구니 버튼 이벤트 등록
-$cartBtn.addEventListener("click", cartAdd);
-// 결제 버튼 이벤트 등록
-$orderBtn.addEventListener("click", orderStart);
-// 수정하기 버튼 이벤트 등록
-$updateBtn.addEventListener("click", goUpdate);
 // 문의조회
 $questionBtn.addEventListener("click", function() {
     question.get_question_list(product_id);
 });
-// 문의등록
-$questionWriteBtn.addEventListener("click", function() {
-    question.write_question(product_id, token);
-});
+
+if (member === "seller") {
+    $cartBtn.classList.add("disabled");
+    $cartBtn.parentElement.classList.add("disabled");
+
+    $orderBtn.classList.add("disabled");
+    $orderBtn.parentElement.classList.add("disabled");
+
+    $questionWriteBtn.classList.add("disabled");
+    $questionWriteBtn.parentElement.classList.add("disabled");
+}
+else {
+    // 장바구니 버튼 이벤트 등록
+    $cartBtn.addEventListener("click", cartAdd);
+    // 결제 버튼 이벤트 등록
+    $orderBtn.addEventListener("click", orderStart);
+    // 문의등록
+    $questionWriteBtn.addEventListener("click", function() {
+        question.write_question(product_id);
+    });
+}
