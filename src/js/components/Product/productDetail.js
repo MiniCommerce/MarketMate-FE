@@ -51,7 +51,7 @@ async function productOnload() {
             $score.innerText = `평점: ${res.score}`;
             $amount.innerText = `재고: ${res.amount}`;
             $desc.innerText = `상품 설명: ${res.desc}`;
-            $seller.innerText = `판매자: ${res.seller}`;
+            $seller.innerText = `판매자: ${res.store_name}`;
             question.set_seller_id(res.seller);
         }
     } catch (err) {
