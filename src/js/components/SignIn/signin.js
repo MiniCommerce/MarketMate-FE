@@ -11,32 +11,62 @@ async function signin(event) {
     const selectedRole = $signinForm.querySelector("input[name='role']:checked");
     const selectedValue = selectedRole.value;
     const email = document.getElementById("email").value;
+    const number = document.getElementById("number").value;
+    const address = document.getElementById("address").value;
+    const name = document.getElementById("name").value;
     const password = document.getElementById("password1").value;
     const password2 = document.getElementById("password2").value;
-    const data = {
-        email: email,
-        password: password
-    };
     
     try {
+        let data;
+        let passwordMismatch = false;
+
+        if (selectedValue === "buyer") {
+            data = {
+                email: email,
+                password: password,
+                number: number,
+                nickname: name,
+                shipping_address: address,
+            };
+        } else if (selectedValue === "seller") {
+            data = {
+                email: email,
+                password: password,
+                number: number,
+                store_name: name,
+                shipping_place: address,
+            };
+        }
+
+        if (password !== password2) {
+            passwordMismatch = true;
+            alert("비밀번호가 일치하지 않습니다.");
+            return;
+        }
+
         let url = URL.buyerSignInURL;
-        
+
         if (selectedValue === "seller") {
             url = URL.sellerSignInURL;
         }
 
-        const ans = await API.apiPost(url, data);
-        const message = ans["message"];
+        if (!passwordMismatch) {
+            const ans = await API.apiPost(url, data);
+            const message = ans["message"];
 
-        if (message) {
-            home.goToLogin();
-        }
-        else {
-            alert("회원가입 실패");
+            if (message) {
+                home.goToLogin();
+            } else {
+                alert("회원가입 실패");
+            }
         }
     } catch (err) {
-      console.log(err);
+        console.log(err);
     }
 }
+
+$signinBtn.addEventListener("click", signin);
+
 
 $signinBtn.addEventListener("click", signin)
