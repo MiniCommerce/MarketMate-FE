@@ -26,8 +26,8 @@ function renderSale(products) {
     const row = document.createElement('tr');
     const productImgCell = document.createElement('td');
     const img = document.createElement('img');
-    const imgsrc = product.images[0].image;
-    img.src = `http://127.0.0.1:8000/${imgsrc}`;
+    const imgsrc = product.thumbnail_image;
+    img.src = `${imgsrc}`;
     img.alt = 'Product Image';
     productImgCell.appendChild(img);
     row.appendChild(productImgCell);
@@ -49,7 +49,7 @@ function renderSale(products) {
       const option = document.createElement('option');
       option.value = optionText;
       option.textContent = optionText;
-      if (optionText === product.status) {
+      if (optionText === product.product_status) {
         option.selected = true;
       }
       statusSelect.appendChild(option);
@@ -113,7 +113,7 @@ async function updateSale(event) {
   try {
     const response = await apiAuthPatch(URL.productUpdateURL, requestData, token);
     if (response.status === 200) {
-      console.log('Product updated successfully:', response.data);
+      console.log('Product updated successfully:');
     } else {
       console.error('Failed to update product:', response);
     }

@@ -26,8 +26,8 @@ async function fetchOrders() {
         const row = document.createElement('tr');
         const productImgCell = document.createElement('td');
         const img = document.createElement('img');
-        const imgsrc = order.product_images[0]; 
-        img.src = `http://127.0.0.1:8000/${imgsrc}`;
+        const imgsrc = order.product_images; 
+        img.src = `${imgsrc}`;
         img.alt = 'Product Image';
         productImgCell.appendChild(img);
         row.appendChild(productImgCell);
@@ -84,7 +84,8 @@ function formatDate(dateString) {
     apiAuthPost(URL.refundURL, data, token)
         .then(response => {
             if (response.message === 'Refund successful') {
-                loadOrders(); 
+                alert('환불이 성공적으로 처리되었습니다.');
+                location.reload(); 
             } else {
                 console.error('Refund failed:', response);
             }
