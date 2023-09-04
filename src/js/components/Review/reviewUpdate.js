@@ -28,7 +28,7 @@ async function reviewUpdate(event){
     try{
         await apiAuthPatch(URL.reviewUpdateURL, data, token);
         alert("리뷰가 수정 되었습니다.");
-        window.location.href = "review.html";
+        window.location.href = "product_detail.html";
     }catch (error){
         console.error("Error submitting review:", error);
         alert("리뷰 수정에 실패했습니다.");

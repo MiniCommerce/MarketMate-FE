@@ -108,9 +108,9 @@
                             <button id="question-btn" class="btn btn-outline-dark flex-shrink-0" type="button">
                                 Q&A
                             </button>
-                            <a href="review.html" class="btn btn-outline-dark flex-shrink-0">
+                            <button id="review-btn" class="btn btn-outline-dark flex-shrink-0" type="button">
                                 Review
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -132,6 +132,18 @@
         <!-- 문의 목록 -->
         <div class="question-container">
         </div>
+        <!-- 후기 목록 -->
+        <div class="review-container">
+        </div>
+        <!-- 후기 작성 -->
+        <form id="review-write-form">
+            <label for="review-score">점수</label>
+            <input type="number" id="review-score" max="5" min="0">
+            <label for="review-write">후기 작성</label>
+            <textarea name="review-write" id="review-write" cols="30" rows="10"></textarea>
+            <input type="submit" id="review-write-btn" value="작성">
+        </form>
+
 
     </div>
 
