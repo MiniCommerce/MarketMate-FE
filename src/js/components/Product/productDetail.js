@@ -2,7 +2,10 @@ import { API } from "../../utils/index.js";
 import { storage } from "../../utils/index.js";
 import { URL } from "../../data/index.js";
 import { question } from "../Question/index.js";
+import { review} from "../Review/index.js";
 import { goToLogin } from "../Home/home.js";
+import { apiAuthGet } from "../../utils/fetchAPI.js";
+
 
 const $id = document.querySelector("#id");
 const $name = document.querySelector("#name");
@@ -20,6 +23,9 @@ const $questionBtn = document.querySelector("#question-btn");
 const $questionWriteBtn = document.querySelector("#question-write-btn");
 const $imageList = document.querySelector(".image-list");
 const $questionTextArea = document.querySelector(".write-quetion");
+
+const $reviewbtn = document.querySelector("#review-btn")
+const $writeBtn = document.querySelector("#review-write-btn")
 
 const token = storage.getSessionStorage("token");
 const product_id = storage.getSessionStorage("product_id");
@@ -163,3 +169,12 @@ else {
         question.write_question(product_id);
     });
 }
+
+$reviewbtn.addEventListener("click", function () {
+    review.reviewlist();
+});
+
+$writeBtn.addEventListener("click", function (event){
+    review.reviewWrite();
+    event.preventDefault();
+});
