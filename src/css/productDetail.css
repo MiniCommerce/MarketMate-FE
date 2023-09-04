@@ -12719,6 +12719,9 @@ ul.image-list li {
 }
 
 /* 문의 */
+.write-question {
+    gap: 20px;
+}
 
 #question-write-btn {
     background-color: #007bff;
@@ -12731,8 +12734,8 @@ ul.image-list li {
 }
 
 #question-desc {
-    /* margin-left: 15%; */
-    width: 30%;
+    margin-left: 15%;
+    width: 60%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;

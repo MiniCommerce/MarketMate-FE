@@ -143,7 +143,8 @@ document.addEventListener("DOMContentLoaded", productOnload);
 // 문의조회
 $questionBtn.addEventListener("click", function () {
     question.get_question_list(product_id);
-    document.querySelector(".review").style.display = "none"; 
+    document.querySelector(".card-body").style.display = "none"; 
+    document.querySelector(".review-container").style.display = "none";
     document.querySelector(".question").style.display = "block";
 });
 
@@ -167,12 +168,17 @@ else {
         question.write_question(product_id);
     });
 }
+document.addEventListener("DOMContentLoaded", function () {
+    review.reviewlist();
+});
 
 $reviewbtn.addEventListener("click", function () {
     review.reviewlist();
-    document.querySelector(".review").style.display = "block"; 
+    document.querySelector(".card-body").style.display = "block"; 
+    document.querySelector(".review-container").style.display = "block";
     document.querySelector(".question").style.display = "none";
 });
+
 
 $writeBtn.addEventListener("click", function (event){
     review.reviewWrite();

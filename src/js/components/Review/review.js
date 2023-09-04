@@ -1,6 +1,7 @@
 import { apiGet, apiAuthDelete, apiAuthPost, apiAuthGet } from '../../utils/fetchAPI.js';
 import { URL } from '../../data/index.js';
 import { getSessionStorage, setSessionStorage } from '../../utils/storage.js';
+import { goToLogin } from '../Home/home.js';
 
 const $reviewContainer = document.querySelector(".review-container");
 
@@ -82,6 +83,10 @@ async function reviewWrite() {
     if (score > 5 || score < 0) {
         alert("점수는 0~5점만 줄 수 있습니다.")
         return;
+    }
+    if (!token){
+        alert("로그인한 유저만 작성할 수 있습니다.")
+        goToLogin();
     }
     const requestData = {
         score: score,
