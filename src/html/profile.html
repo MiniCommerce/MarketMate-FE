@@ -4,29 +4,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <script src="https://code.jquery.com/jquery-3.7.0.js"
-        integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
-
-    <title>Untitle-Project-FE</title>
+    <link href="../css/login-join.css" rel="stylesheet" />
+    <title>MarketMate</title>
 </head>
 <body>
-    <h1>My Page</h1>
-    <nav>
-        <ul class="buyer-profile">
-            <li><a href="order_state.html">주문 현황</a></li>
-            <li><a href="profile_update.html">정보 수정</a></li>
-            <li><a href="change_pw.html">비밀번호 변경</a></li>
-            <li><a href="user_delete.html">회원 탈퇴</a></li>
-        </ul>
+    <div class="main">
+        <div class="container">
+            <h2 class="title">회원 정보</h2>
+            <p class="description">회원 정보를 확인하세요.</p>
+        <form class="login-form">
+            <div>
+                <label class="label-width" for="nickname">닉네임</label>
+                <input type="text" id="nickname" class="normal-profile" value="닉네임">
+            </div>
+            <div>
+                <label class="label-width" for="number">전화 번호</label>
+                <input type="text" id="number" class="normal-profile" value="전화번호">
+            </div>
+            <div>
+                <label class="label-width" for="shipping_address">배송지</label>
+                <input type="text" id="shipping_address" class="normal-profile" value="배송지">
+            </div>
 
-        <ul class="seller-profile">
-            <li><a href="sale_product.html">내 판매 상품</a></li>
-            <li><a href="seller_profile_update.html">정보 수정</a></li>
-            <li><a href="change_pw.html">비밀번호 변경</a></li>
-            <li><a href="user_delete.html">회원 탈퇴</a></li>
-        </ul>
-    </nav>
+            <div>
+                <input type="submit" id="update-btn" class="submit-button" value="회원 정보 수정">
+                <input type="submit" id="pwd-update-btn" class="submit-button" value="비밀번호 변경">
+                <input type="submit" id="delete-btn" class="submit-button" value="회원 탈퇴">
+            </div>
+        </form>
+    </div>
 
     <script src="../js/components/profile/index.js" type="module"></script>
 </body>

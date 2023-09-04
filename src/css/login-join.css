@@ -69,6 +69,16 @@
 	margin: 20px 0;
 }
 
+/* 프로필(확인) */
+.normal-profile {
+	border: none;
+	text-align: right;
+}
+
+input[type=submit] {
+	margin: 1px;
+}
+
 .changepw-container,
 .profile-update-container,
 .seller-update-container,
