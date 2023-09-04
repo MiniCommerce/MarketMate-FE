@@ -139,7 +139,6 @@ async function get_question_list(product_id) {
     
     try {
         const res = await API.apiGet(url);
-        
         for (let i = 0; i < res.length; i++) {
             const data = res[i];
             const $questionItem = create_question_card(data);
