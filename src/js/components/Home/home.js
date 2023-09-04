@@ -40,7 +40,7 @@ function goToMyOrder() {
 }
 
 function goToMyProductRegister() {
-    location.href = "../../src/html/product_register.html"
+    location.href = "../../src/html/sale_product.html"
 }
 
 // index.html page인지 체크

@@ -97,3 +97,12 @@
 .product-register-list-page {
     cursor: pointer;
 }
+
+.product-regist-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.product-regist-btn {
+    width: 50%;
+}

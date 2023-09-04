@@ -129,3 +129,8 @@ async function loadSale() {
 }
 
 window.addEventListener('load', loadSale);
+const $productRegistBtn = document.querySelector(".product-regist-btn");
+$productRegistBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  location.href = "../../src/html/product_register.html";
+});
