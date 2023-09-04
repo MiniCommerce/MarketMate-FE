@@ -65,11 +65,11 @@ async function startPurchase(event) {
     if (res !== undefined) {
       // 실결제를 위한 초기화
       var IMP = window.IMP;
-      IMP.init("imp27521302");
+      IMP.init("imp85473323");
       
       // 실결제 시작
       IMP.request_pay({
-        pg: "nice",
+        pg: "kcp.store-3d5642f0-c478-4241-b8c3-03395a70373e",
         pay_method: purchaseType,
         merchant_uid: merchantUID,
         name: $orderName.value,
