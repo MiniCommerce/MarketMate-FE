@@ -4,22 +4,42 @@ import { URL, category } from "../../data/index.js";
 
 const $productListContainer = document.querySelector(".product-list");
 const $searchBtn = document.querySelector("#search-btn");
-const $categoryContainer = document.querySelector(".category-list-btn");
+const $categoryContainer = document.querySelector("#category");
 
 function create_card(data) {
   const $cardContainer = document.createElement("div");
+  const $cardItem = document.createElement("div");
+  const $cardBody = document.createElement("div");
+  const $textCenter = document.createElement("div");
   const $thumbnailImage = document.createElement("img");
-  const $productName = document.createElement("p");
+  const $productName = document.createElement("h5");
   const $productPrice = document.createElement("p");
   const $productScore = document.createElement("p");
 
-  $cardContainer.setAttribute("class", "product-item");
+  $cardContainer.classList.add("col");
+  $cardContainer.classList.add("mb-5");
+  // 카드 아이템
+  $cardItem.classList.add("product-item");
+  $cardItem.classList.add("card");
+  $cardItem.classList.add("h-100");
+  // 썸네일 이미지
   $thumbnailImage.setAttribute("src", data.thumbnail_image);
+  $thumbnailImage.classList.add("card-img-top");
+  // 카드 body
+  $cardBody.classList.add("card-body");
+  $cardBody.classList.add("p-4");
+  // 텍스트
+  $textCenter.classList.add("text-center");
+
   $productName.innerText = data.product_name;
+  $productName.classList.add("fw-bolder");
   $productPrice.innerText = data.price;
   $productScore.innerText = data.score;
 
-  $cardContainer.append($thumbnailImage, $productName, $productPrice, $productScore)
+  $textCenter.append($productName, $productPrice, $productScore);
+  $cardBody.append($textCenter);
+  $cardItem.append($thumbnailImage, $cardBody);
+  $cardContainer.append($cardItem)
 
   return $cardContainer
 }
@@ -128,16 +148,21 @@ async function select_category (event, category_name) {
 
 // 카테고리 버튼들 생성
 for (let i = 0; i < category.category_list.length; i++) {
-  const btn = document.createElement("button");
-  btn.value = category.category_list[i];
-  btn.innerText = category.category_list[i];
+  const $option = document.createElement("option");
+  $option.value = category.category_list[i];
+  $option.text = category.category_list[i];
 
-  btn.addEventListener("click", function(event) {
-    const category_name = category.category_list[i];
-    select_category(event, category_name);
-  });
-  $categoryContainer.appendChild(btn);
+  $categoryContainer.appendChild($option);
 }
 // HTML 문서 전체가 로드 되었을 때 이벤트 등록
 document.addEventListener("DOMContentLoaded", productOnload);
 $searchBtn.addEventListener("click", search);
+$categoryContainer.addEventListener("change", function(event) {
+  const category_name = $categoryContainer.value;
+  if (category_name === "전체") {
+    productOnload();
+  }
+  else {
+    select_category(event, category_name);
+  }
+});
