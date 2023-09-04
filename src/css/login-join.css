@@ -40,6 +40,10 @@
 	padding: 0;
 }
 
+.cancel-button {
+	width: 100%;
+}
+
 .order{
 	width: 50%;
 	height: 40px;
@@ -72,7 +76,8 @@
 .changepw-container,
 .profile-update-container,
 .seller-update-container,
-.user-delete-container {
+.user-delete-container,
+.product-register-container {
 	width: 360px;
 	margin: auto;
 	margin-top: 100px;
