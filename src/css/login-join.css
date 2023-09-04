@@ -40,6 +40,10 @@
 	padding: 0;
 }
 
+.cancel-button {
+	width: 100%;
+}
+
 .order{
 	width: 50%;
 	height: 40px;
@@ -69,10 +73,21 @@
 	margin: 20px 0;
 }
 
+/* 프로필(확인) */
+.normal-profile {
+	border: none;
+	text-align: right;
+}
+
+input[type=submit] {
+	margin: 1px;
+}
+
 .changepw-container,
 .profile-update-container,
 .seller-update-container,
-.user-delete-container {
+.user-delete-container,
+.product-register-container {
 	width: 360px;
 	margin: auto;
 	margin-top: 100px;

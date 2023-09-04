@@ -8,6 +8,8 @@ const $signinPage = document.querySelector(".signin-page");
 const $cartPage = document.querySelector(".cart-page");
 const $productListPage = document.querySelector(".product-list-page");
 const $homePage = document.querySelector(".home-page");
+const $orderListPage = document.querySelector(".order-list-page");
+const $productRegisterListPage = document.querySelector(".product-register-list-page");
 
 function goToHome() {
     location.href = "../../../index.html"
@@ -33,10 +35,22 @@ function goToCart() {
     location.href = "../../src/html/cart.html"
 }
 
+function goToMyOrder() {
+    location.href = "../../src/html/order_state.html"
+}
+
+function goToMyProductRegister() {
+    location.href = "../../src/html/sale_product.html"
+}
+
 // index.html page인지 체크
 if ($profilePage) {
+    $orderListPage.parentElement.classList.add("disabled");
+    $productRegisterListPage.parentElement.classList.add("disabled");
+
     // 로그인 한 상태
     if (storage.getSessionStorage("token")) {
+        const member = storage.getSessionStorage("member");
         // 비활성화
         $loginPage.parentElement.classList.add("disabled");
         $signinPage.parentElement.classList.add("disabled");
@@ -44,12 +58,13 @@ if ($profilePage) {
         // 활성화
         $logoutBtn.parentElement.classList.remove("disabled");
         $profilePage.parentElement.classList.remove("disabled");
-        if (storage.getSessionStorage("member") === "buyer")
-        {
+        if (member === "buyer") {
             $cartPage.classList.remove("disabled");
+            $orderListPage.parentElement.classList.remove("disabled");
         }
         else {
             $cartPage.classList.add("disabled");
+            $productRegisterListPage.parentElement.classList.remove("disabled");
         }
     }
     else {
@@ -70,6 +85,8 @@ if ($profilePage) {
     $profilePage.addEventListener("click", goToMypage);
     $cartPage.addEventListener("click", goToCart);
     $homePage.addEventListener("click", goToHome);
+    $orderListPage.addEventListener("click", goToMyOrder);
+    $productRegisterListPage.addEventListener("click", goToMyProductRegister);
 }
 
 export { goToHome, goToLogin }

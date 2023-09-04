@@ -16,7 +16,7 @@ const $purchaseBtn = document.querySelector("#purchase-btn");
 const $cancelBtn = document.querySelector("#cancel-btn");
 
 const token = storage.getSessionStorage("token");
-var purchaseType = "";
+var purchaseType = "card";
 
 // HTML 문서 전체가 로드 되었을 때의 이벤트
 async function orderOnload(event) {
@@ -25,9 +25,9 @@ async function orderOnload(event) {
     const res = await API.apiAuthGet(`${URL.orderURL}?order_id=${storage.getSessionStorage("order_id")}`, token);
     if (res !== undefined) {
         $orderId.innerText = `${res.id}`;
-        $orderName.innerText = `주문명: ${res.order_name}`;
-        $price.innerText = `가격: ${res.price}`;
-        $buyerName.innerText = `주문자: ${res.buyer_name}`;
+        $orderName.value = `${res.order_name}`;
+        $price.value = `${res.price}`;
+        $buyerName.value = `${res.buyer_name}`;
         $address.value = `${res.address}`;
         $email.value = `${res.buyer_email}`;
         $phone.value = `${res.buyer_phone}`;
@@ -56,7 +56,7 @@ async function startPurchase(event) {
     const data = {
       order_id: $orderId.innerText,
       merchant_uid: merchantUID,
-      price: parseInt($price.innerText.split(": ")[1]),
+      price: parseInt($price.value),
       purchase_type: purchaseType
     }
     
@@ -72,10 +72,10 @@ async function startPurchase(event) {
         pg: "nice",
         pay_method: purchaseType,
         merchant_uid: merchantUID,
-        name: $orderName.innerText.split(": ")[1],
-        amount: parseInt($price.innerText.split(": ")[1]),
+        name: $orderName.value,
+        amount: parseInt($price.value),
         buyer_email: $email.value,
-        buyer_name: $buyerName.innerText.split(": ")[1],
+        buyer_name: $buyerName.value,
         buyer_tel: $phone.value
       }, (rsp) => {
         // 결제 성공시
