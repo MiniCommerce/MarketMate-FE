@@ -5,17 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원 탈퇴</title>
+    <link href="../css/login-join.css" rel="stylesheet"/>
 </head>
 <body>
-    <h1>회원 탈퇴</h1>
-    <form>
-        <label for="password1">비밀번호</label>
-        <input type="password" id = "password1">
-        <label for="password2">비밀번호 확인</label>
-        <input type="password" id = "password2">
+    <div class="main">
+        <div class="container">
+            <h2 class="title">회원 탈퇴</h2>
+            <p class="description">비밀번호를 입력하세요.</p>
+                <form class="login-form">
+                    <div>
+                        <label class="label-width" for="password1">비밀번호</label>
+                        <input type="password" id = "password1">
+                    </div>
+                    <div>
+                        <label class="label-width" for="password2">비밀번호 확인</label>
+                        <input type="password" id = "password2">
+                    </div>
 
-        <input type="submit" id="user_delete_btn" value="회원 탈퇴">
-    </form>
+                    <input type="submit" class="submit-button" id="user_delete_btn" value="회원 탈퇴">
+                </form>
     <script src="../js/components/UserDelete/index.js" type="module"></script>
 </body>
 </html>

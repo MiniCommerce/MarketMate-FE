@@ -5,21 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Untitle-Project-FE</title>
+    <link href="../css/login-join.css" rel="stylesheet"/>
 </head>
 <body>
-    <form id="login-form">
-        <ul>
-            <li>
-                <input type="email" id="email" placeholder="이메일">
-            </li>
-            <li>
-                <input type="password" id="password" placeholder="비밀번호">
-            </li>
-        </ul>
-
-        <input type="submit" id="submit-btn" value="로그인">
-    </form>
-
+    <div class="main">
+        <div class="container">
+            <h2 class="title">로그인</h2>
+            <p class="description">아이디와 비밀번호를 입력하고 로그인하세요.</p>
+            <form id="login-form" class="login-form">
+                <div>
+                    <label class="label-width" for="email">아이디</label>
+                    <input type="email" id="email">
+                </div>
+                <div>
+                    <label class="label-width" for="password">비밀번호</label>
+                    <input type="password" id="password">
+                </div>
+        
+                <input type="submit" id="submit-btn" class="submit-button" value="로그인">
+            </form>
+        </div>
+    </div>
     <script src="../js/components/Login/index.js" type="module"></script>
 </body>
 </html>
