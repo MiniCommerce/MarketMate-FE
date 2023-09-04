@@ -151,7 +151,7 @@
 
         <section class="mb-5">
             <div class="card bg-light">
-                <div class="card-body">
+                <div class="card-body" style="display: none;">
                     <!-- 후기 작성 -->
                     <form class="mb-4">
                         <label for="review-score">점수</label>
@@ -159,15 +159,14 @@
                         <textarea id="review-write" class="form-control" rows="3" placeholder="후기를 작성하세요!"></textarea>
                         <button type="submit" id="review-write-btn">작성</button>
                     </form>
+                </div>
                     <!-- 후기 목록 -->
                     <div class="d-flex">
                         <div class="flex-shrink-0"></div>
                         <div class="ms-3">
                             <div class="review-container"></div>
-
                         </div>
                     </div>
-                </div>
             </div>
         </section>
 
