@@ -124,42 +124,28 @@
 
 
         <!-- 문의 작성 -->
-        <div class="write-question">
-            <textarea name="" id="question-desc" cols="30" rows="10"></textarea>
-            <button id="question-write-btn">문의하기</button>
-        </div>
-        <hr>
-        <!-- 문의 목록 -->
-        <div class="question-container">
-        </div>
-
-        <!-- 후기 -->
-        <section class="mb-5">
-            <div class="card bg-light">
-                <div class="card-body">
-                    <!-- 후기 작성 -->
-                    <form class="mb-4">
-                        <label for="review-score">점수</label>
-                        <input type="number" id="review-score" max="5" min="0">
-                        <textarea id="review-write" class="form-control" rows="3" placeholder="후기를 작성하세요!"></textarea>
-                        <button type="submit" id="review-write-btn">작성</button>
-                    </form>
-                    <!-- 후기 목록 -->
-                    <div class="d-flex">
-                        <div class="flex-shrink-0">
-                            <!-- <img class="rounded-circle"
-                                src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /> -->
-                        </div>
-                        <div class="ms-3">
-                            <div class="review-container"></div>
-
-                        </div>
-                    </div>
-                </div>
+        <div class="question" style="display: none;">
+            <div class="write-question">
+                <textarea name="" id="question-desc" cols="30" rows="10"></textarea>
+                <button id="question-write-btn">문의하기</button>
             </div>
-        </section>
-
-    </div>
+            <hr>
+            <!-- 문의 목록 -->
+            <div class="question-container">
+            </div>
+        </div>
+        <!-- 후기 작성 -->
+        <div class="review" style="display: none;">
+            <form id="review-write-form">
+                <label for="review-score">점수</label>
+                <input type="number" id="review-score" max="5" min="0">
+                <label for="review-write">후기 작성</label>
+                <textarea name="review-write" id="review-write" cols="30" rows="10"></textarea>
+                <input type="submit" id="review-write-btn" value="작성">
+            </form>
+            <!-- 후기 목록 -->
+            <div class="review-container">
+            </div>
 
     <script src="../js/components/Product/productDetail.js" type="module"></script>
 </body>
