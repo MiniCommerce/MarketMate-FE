@@ -8,7 +8,6 @@ $updateButton.addEventListener("click", reviewUpdate)
 
 const updatereview = getSessionStorage("currentReview")
 const review = JSON.parse(updatereview);
-console.log(review)
 const scoreInput = document.querySelector("#update-score");
 const descInput = document.querySelector("#review-update");
 scoreInput.value = review.score;

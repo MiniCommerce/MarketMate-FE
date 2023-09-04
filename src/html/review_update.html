@@ -5,15 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MarketMate</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link rel="stylesheet" href="../css/productDetail.css">
 </head>
 <body>
-<form>
-    <label for="update-score">점수</label>
-    <input type="number" id="update-score" max="5" min="0">
-    <label for="review-update">후기 작성</label>
-    <textarea name="review-update" id="review-update" cols="30" rows="10"></textarea>
-    <input type="submit" id="review-update-btn" value="수정">
-</form>
-<script type="module" src="/src/js/components/Review/reviewUpdate.js"></script>
+    <section class="mb-5">
+        <div class="card bg-light">
+            <div class="card-body">
+                <!-- Comment form-->
+                <form class="mb-4">
+                    <label for="review-score">점수</label>
+                    <input type="number" id="update-score" max="5" min="0">
+                    <textarea id="review-update" class="form-control" rows="3" placeholder="후기를 작성하세요!"></textarea>
+                    <button type="submit" id="review-update-btn">수정</button>
+                </form>
+
+
+            </div>
+        </div>
+    </section>
+    <script type="module" src="/src/js/components/Review/reviewUpdate.js"></script>
 </body>
 </html>

@@ -22,39 +22,31 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#!">Start Bootstrap</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation"><span
-                        class="navbar-toggler-icon"></span></button>
+                <!-- Home -->
+                <a class="home-page navbar-brand">Home</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <!-- Nav Contents -->
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#!">All Products</a></li>
-                                <li>
-                                    <hr class="dropdown-divider" />
-                                </li>
-                                <li><a class="dropdown-item" href="#!">Popular Items</a></li>
-                                <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
-                            </ul>
-                        </li>
+                        <li class="nav-item"><a class="product-list-page nav-link">상품목록</a></li>
+                        <li class="nav-item"><a class="login-page nav-link">로그인</a></li>
+                        <li class="nav-item"><a class="logout-btn nav-link">로그아웃</a></li>
+                        <li class="nav-item"><a class="profile-page nav-link">회원정보</a></li>
+                        <li class="nav-item"><a class="signin-page nav-link">회원가입</a></li>
+                        <li class="nav-item"><a class="order-list-page nav-link">주문조회</a></li>
+                        <li class="nav-item"><a class="product-register-list-page nav-link">등록상품조회</a></li>
                     </ul>
+                    <!-- Cart -->
                     <form class="d-flex">
-                        <button class="btn btn-outline-dark" type="submit">
+                        <a class="cart-page btn btn-outline-dark">
                             <i class="bi-cart-fill me-1"></i>
                             Cart
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                        </button>
+                        </a>
                     </form>
                 </div>
             </div>
         </nav>
-
+        
         <!-- Product section-->
         <section class="py-5">
             <div class="container px-4 px-lg-5 my-5">
@@ -124,29 +116,38 @@
 
 
         <!-- 문의 작성 -->
-        <div class="write-question">
-            <textarea name="" id="question-desc" cols="30" rows="10"></textarea>
-            <button id="question-write-btn">문의하기</button>
+        <div class="question" style="display: none;">
+            <div class="write-question">
+                <textarea name="" id="question-desc" cols="30" rows="4" placeholder="문의를 작성하세요!"></textarea>
+                <button id="question-write-btn">작성</button>
+            </div>
+            <hr>
+            <!-- 문의 목록 -->
+            <div class="question-container">
+            </div>
         </div>
-        <hr>
-        <!-- 문의 목록 -->
-        <div class="question-container">
-        </div>
-        <!-- 후기 목록 -->
-        <div class="review-container">
-        </div>
-        <!-- 후기 작성 -->
-        <form id="review-write-form">
-            <label for="review-score">점수</label>
-            <input type="number" id="review-score" max="5" min="0">
-            <label for="review-write">후기 작성</label>
-            <textarea name="review-write" id="review-write" cols="30" rows="10"></textarea>
-            <input type="submit" id="review-write-btn" value="작성">
-        </form>
 
+        <section class="mb-5">
+            <div class="card bg-light">
+                <div class="card-body" style="display: none;">
+                    <!-- 후기 작성 -->
+                    <form class="mb-4">
+                        <label for="review-score">점수</label>
+                        <input type="number" id="review-score" max="5" min="0">
+                        <textarea id="review-write" class="form-control" rows="3" placeholder="후기를 작성하세요!"></textarea>
+                        <button type="submit" id="review-write-btn">작성</button>
+                    </form>
+                </div>
+                <!-- 후기 목록 -->
+                <div class="d-flex">
+                    <div class="flex-shrink-0"></div>
+                    <div class="ms-3">
+                        <div class="review-container"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    </div>
-
-    <script src="../js/components/Product/productDetail.js" type="module"></script>
+        <script src="../js/components/Product/productDetail.js" type="module"></script>
 </body>
 </html>

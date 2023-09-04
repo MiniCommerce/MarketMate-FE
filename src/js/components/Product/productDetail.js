@@ -4,8 +4,6 @@ import { URL } from "../../data/index.js";
 import { question } from "../Question/index.js";
 import { review} from "../Review/index.js";
 import { goToLogin } from "../Home/home.js";
-import { apiAuthGet } from "../../utils/fetchAPI.js";
-
 
 const $id = document.querySelector("#id");
 const $name = document.querySelector("#name");
@@ -109,7 +107,6 @@ async function orderStart(event) {
 
         if (data !== undefined) {
             const res = await API.apiAuthPost(URL.orderURL, data, token);
-            console.log(res)
             storage.setSessionStorage("order_id", res.order.id);
             location.href = "../../src/html/order.html";
         } else {
@@ -131,7 +128,6 @@ async function goUpdate() {
 
         if (data !== undefined) {
             const res = await API.apiAuthGet(URL.productUpdateURL, token);
-            console.log(res)
             // storage.setSessionStorage("order_id", res.order.id);
             location.href = "../../src/html/product_update.html";
         } else {
@@ -147,6 +143,9 @@ document.addEventListener("DOMContentLoaded", productOnload);
 // 문의조회
 $questionBtn.addEventListener("click", function () {
     question.get_question_list(product_id);
+    document.querySelector(".card-body").style.display = "none"; 
+    document.querySelector(".review-container").style.display = "none";
+    document.querySelector(".question").style.display = "block";
 });
 
 if (member === "seller") {
@@ -169,10 +168,17 @@ else {
         question.write_question(product_id);
     });
 }
+document.addEventListener("DOMContentLoaded", function () {
+    review.reviewlist();
+});
 
 $reviewbtn.addEventListener("click", function () {
     review.reviewlist();
+    document.querySelector(".card-body").style.display = "block"; 
+    document.querySelector(".review-container").style.display = "block";
+    document.querySelector(".question").style.display = "none";
 });
+
 
 $writeBtn.addEventListener("click", function (event){
     review.reviewWrite();
