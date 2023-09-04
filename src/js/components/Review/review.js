@@ -1,20 +1,22 @@
-import { apiGet, apiAuthDelete,apiAuthGet } from '../../utils/fetchAPI.js';
+import { apiGet, apiAuthDelete,apiAuthPost, apiAuthGet  } from '../../utils/fetchAPI.js';
 import { URL } from '../../data/index.js';
 import { getSessionStorage, setSessionStorage } from '../../utils/storage.js';
 
+const $reviewContainer = document.querySelector(".review-container");
+
 async function reviewlist() {
-    const token = getSessionStorage("token");
+    const token = getSessionStorage("token")
     const product_id = getSessionStorage("product_id");
-  
+
     try {
         const response = await apiGet(URL.reviewlistURL + product_id + "/", {});
         const currentUserID = token ? await apiAuthGet(URL.userDiscriminationURL, token) : -1;
-        const reviewListElement = document.querySelector(".review-list");
-        reviewListElement.innerHTML = ""; 
-  
+        
+        $reviewContainer.innerHTML = "";
+
         for (const review of response) {
-            console.log(review)
-            const reviewContainer = document.createElement("div"); 
+
+            const reviewContainer = document.createElement("div");
 
             const reviewWriter = document.createElement("li");
             reviewWriter.textContent = '작성자 : ' + review.buyer_name;
@@ -57,7 +59,7 @@ async function reviewlist() {
                 reviewContainer.appendChild(deleteButton);
             }
 
-            reviewListElement.appendChild(reviewContainer); 
+            $reviewContainer.appendChild(reviewContainer);
         }
     } catch (error) {
         console.error("Error fetching response:", error);
@@ -65,10 +67,34 @@ async function reviewlist() {
 }
 
 
-window.addEventListener("load", reviewlist);
-
 function formatDate(dateString) {
     const date = new Date(dateString);
     const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
     return date.toLocaleDateString('ko-KR', options);
-  }
+}
+
+async function reviewWrite() {
+    const token = getSessionStorage("token");
+    const product_id = getSessionStorage("product_id");
+    
+    const score = document.querySelector("#review-score").value;
+    const reviewText = document.querySelector("#review-write").value;
+    if(score > 5 || score < 0){
+        alert("점수는 0~5점만 줄 수 있습니다.")
+        return;
+    }
+    const requestData = {
+        score: score,
+        desc: reviewText,
+        product_id: product_id
+    };
+
+    try {
+        await apiAuthPost(URL.reviewWriteURL, requestData, token);
+        alert("리뷰가 작성되었습니다.");
+    } catch (error) {
+        console.error("Error submitting review:", error);
+        alert("리뷰 작성에 실패했습니다.");
+    }
+}
+export { reviewlist, reviewWrite }
