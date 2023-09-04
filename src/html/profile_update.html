@@ -5,19 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원 정보 수정</title>
+    <link href="../css/login-join.css" rel="stylesheet" />
 </head>
 <body>
-    <h1>회원 정보 수정</h1>
-    <form>
-        <label for="nickname">닉네임</label>
-        <input type="text" id="nickname">
-        <label for="number">전화 번호</label>
-        <input type="text" id="number">
-        <label for="shipping_address">배송지</label>
-        <input type="text" id="shipping_address">
+    <div class="main">
+        <div class="container">
+            <h2 class="title">회원 정보 수정</h2>
+            <p class="description">닉네임, 전화번호, 배송지를 수정하세요.</p>
+        <form class="login-form">
+            <div>
+                <label class="label-width" for="nickname">닉네임</label>
+                <input type="text" id="nickname">
+            </div>
+            <div>
+                <label class="label-width" for="number">전화 번호</label>
+                <input type="text" id="number">
+            </div>
+            <div>
+                <label class="label-width" for="shipping_address">배송지</label>
+                <input type="text" id="shipping_address">
+            </div>
 
-        <input type="submit" id="update-btn" value="수정">
-    </form>
+            <input type="submit" id="update-btn" class="submit-button" value="수정">
+        </form>
+    </div>
+</div>
+
     <script src="../js/components/ProfileUpdate/index.js" type="module"></script>
 </body>
 </html>
