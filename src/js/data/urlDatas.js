@@ -1,42 +1,42 @@
-export const loginURL = "https://www.marketmate.digital/api/user/login/";
-export const buyerSignInURL = "https://www.marketmate.digital/api/user/buyer/signin/";
-export const sellerSignInURL = "https://www.marketmate.digital/api/user/seller/signin/";
-export const logoutURL = "https://www.marketmate.digital/api/user/logout/";
-export const deleteUserURL = "https://www.marketmate.digital/api/user/delete/";
-export const changePassWordURL = "https://www.marketmate.digital/api/user/changepw/";
-export const buyerUpdateURL = "https://www.marketmate.digital/api/user/buyer/update/";
-export const sellerUpdateURL = "https://www.marketmate.digital/api/user/seller/update/";
-export const userDiscriminationURL = "https://www.marketmate.digital/api/user/discrimination/"
+export const loginURL = "http://127.0.0.1:8000/user/login/";
+export const buyerSignInURL = "http://127.0.0.1:8000/user/buyer/signin/";
+export const sellerSignInURL = "http://127.0.0.1:8000/user/seller/signin/";
+export const logoutURL = "http://127.0.0.1:8000/user/logout/";
+export const deleteUserURL = "http://127.0.0.1:8000/user/delete/";
+export const changePassWordURL = "http://127.0.0.1:8000/user/changepw/";
+export const buyerUpdateURL = "http://127.0.0.1:8000/user/buyer/update/";
+export const sellerUpdateURL = "http://127.0.0.1:8000/user/seller/update/";
+export const userDiscriminationURL = "http://127.0.0.1:8000/user/discrimination/"
 
 // 상품 관련 URL
-export const productListURL = "https://www.marketmate.digital/api/products/list/";
-export const productDetailURL = "https://www.marketmate.digital/api/products/detail/";
-export const productRegisterURL = "https://www.marketmate.digital/api/products/register/";
-export const productUpdateURL = "https://www.marketmate.digital/api/products/update/";
-export const mysaleProduct = "https://www.marketmate.digital/api/products/mysale/";
+export const productListURL = "http://127.0.0.1:8000/products/list/";
+export const productDetailURL = "http://127.0.0.1:8000/products/detail/";
+export const productRegisterURL = "http://127.0.0.1:8000/products/register/";
+export const productUpdateURL = "http://127.0.0.1:8000/products/update/";
+export const mysaleProduct = "http://127.0.0.1:8000/products/mysale/";
 
 // 장바구니 관련 URL
-export const cartAddURL = "https://www.marketmate.digital/api/carts/add/";
-export const cartListURL = "https://www.marketmate.digital/api/carts/list/";
-export const cartUpdateURL = "https://www.marketmate.digital/api/carts/update/";
-export const cartDeleteURL = "https://www.marketmate.digital/api/carts/delete/";
+export const cartAddURL = "http://127.0.0.1:8000/carts/add/";
+export const cartListURL = "http://127.0.0.1:8000/carts/list/";
+export const cartUpdateURL = "http://127.0.0.1:8000/carts/update/";
+export const cartDeleteURL = "http://127.0.0.1:8000/carts/delete/";
 
 // 결제 관련 URL
-export const orderURL = "https://www.marketmate.digital/api/purchases/order/";
-export const cartOrderURL = "https://www.marketmate.digital/api/purchases/order/cart/";
-export const prepurchaseURL = "https://www.marketmate.digital/api/purchases/prepurchase/";
-export const postpurchaseURL = "https://www.marketmate.digital/api/purchases/postpurchase/";
-export const refundURL = "https://www.marketmate.digital/api/purchases/refund/";
-export const buyerOrderURL = "https://www.marketmate.digital/api/purchases/buyer_orders/";
+export const orderURL = "http://127.0.0.1:8000/purchases/order/";
+export const cartOrderURL = "http://127.0.0.1:8000/purchases/order/cart/";
+export const prepurchaseURL = "http://127.0.0.1:8000/purchases/prepurchase/";
+export const postpurchaseURL = "http://127.0.0.1:8000/purchases/postpurchase/";
+export const refundURL = "http://127.0.0.1:8000/purchases/refund/";
+export const buyerOrderURL = "http://127.0.0.1:8000/purchases/buyer_orders/";
 
 // 후기 관련 URL
-export const reviewlistURL = "https://www.marketmate.digital/api/reviews/list/";
-export const reviewWriteURL = "https://www.marketmate.digital/api/reviews/write/"
-export const reviewUpdateURL = "https://www.marketmate.digital/api/reviews/update/"
-export const reviewDeleteURL = "https://www.marketmate.digital/api/reviews/delete/"
+export const reviewlistURL = "http://127.0.0.1:8000/reviews/list/";
+export const reviewWriteURL = "http://127.0.0.1:8000/reviews/write/"
+export const reviewUpdateURL = "http://127.0.0.1:8000/reviews/update/"
+export const reviewDeleteURL = "http://127.0.0.1:8000/reviews/delete/"
 
 // 문의
-export const questionListURL = "https://www.marketmate.digital/api/questions/list/";
-export const questionWriteURL = "https://www.marketmate.digital/api/questions/write/";
-export const questionUpdateURL = "https://www.marketmate.digital/api/questions/update/";
-export const questionDeleteURL = "https://www.marketmate.digital/api/questions/delete/";
+export const questionListURL = "http://127.0.0.1:8000/questions/list/";
+export const questionWriteURL = "http://127.0.0.1:8000/questions/write/";
+export const questionUpdateURL = "http://127.0.0.1:8000/questions/update/";
+export const questionDeleteURL = "http://127.0.0.1:8000/questions/delete/";
