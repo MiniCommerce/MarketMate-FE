@@ -13,7 +13,6 @@ async function changepw() {
 
     try {
         const response = await apiAuthPost(URL.changePassWordURL, { current_password: current_password, new_password: new_password }, token);
-        console.log(response)
         if (response.status === 200) {
             alert("비밀번호가 변경되었습니다.");
             home.goToHome();

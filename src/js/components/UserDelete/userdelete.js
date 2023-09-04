@@ -16,7 +16,6 @@ async function deleteUser() {
         }
 
         const response = await apiAuthPost(URL.deleteUserURL, { password: password }, token);
-        console.log(response)
         if (response.status === 200) {
             alert("회원 탈퇴가 완료되었습니다.");
             home.goToHome();

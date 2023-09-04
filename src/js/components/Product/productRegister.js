@@ -41,6 +41,7 @@ async function create_product(event) {
 
         if (productRegister) {
             alert("상품을 등록했습니다")
+            window.location.href = "sale_product.html"; 
         } else {
             alert("에러")
         }

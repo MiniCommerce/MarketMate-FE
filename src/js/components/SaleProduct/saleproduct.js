@@ -114,7 +114,8 @@ async function updateSale(event) {
   try {
     const response = await apiAuthPatch(URL.productUpdateURL, requestData, token);
     if (response.status === 200) {
-      console.log('Product updated successfully:');
+      alert("상품정보 수정에 성공했습니다.");
+      location.reload();
     } else {
       console.error('Failed to update product:', response);
     }

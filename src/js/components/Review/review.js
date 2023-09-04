@@ -97,6 +97,7 @@ async function reviewWrite() {
     try {
         await apiAuthPost(URL.reviewWriteURL, requestData, token);
         alert("리뷰가 작성되었습니다.");
+        location.reload();
     } catch (error) {
         console.error("Error submitting review:", error);
         alert("리뷰 작성에 실패했습니다.");
