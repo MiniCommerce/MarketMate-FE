@@ -6,31 +6,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원 정보 수정</title>
     <link href="../css/login-join.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet"/>
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../css/styles.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="main">
-        <div class="container">
-            <h2 class="title">회원 정보 수정</h2>
-            <p class="description">닉네임, 전화번호, 배송지를 수정하세요.</p>
-        <form class="login-form">
-            <div>
-                <label class="label-width" for="nickname">닉네임</label>
-                <input type="text" id="nickname">
+    <div id="root">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container px-4 px-lg-5">
+                <!-- Home -->
+                <a class="home-page navbar-brand">Home</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <!-- Nav Contents -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                        <li class="nav-item"><a class="product-list-page nav-link">상품목록</a></li>
+                        <li class="nav-item"><a class="login-page nav-link">로그인</a></li>
+                        <li class="nav-item"><a class="logout-btn nav-link">로그아웃</a></li>
+                        <li class="nav-item"><a class="profile-page nav-link">회원정보</a></li>
+                        <li class="nav-item"><a class="signin-page nav-link">회원가입</a></li>
+                    </ul>
+                    <!-- Cart -->
+                    <form class="d-flex">
+                        <a class="cart-page btn btn-outline-dark">
+                            <i class="bi-cart-fill me-1"></i>
+                            Cart
+                        </a>
+                    </form>
+                </div>
             </div>
-            <div>
-                <label class="label-width" for="number">전화 번호</label>
-                <input type="text" id="number">
+        </nav>
+        <!-- Header-->
+        <header id="header" class="bg-dark py-4">
+            <div class="container px-4 px-lg-4 my-2">
+                <div class="text-center text-white">
+                    <h1 class="display-4 fw-bolder">MarketMate</h1>
+                </div>
             </div>
-            <div>
-                <label class="label-width" for="shipping_address">배송지</label>
-                <input type="text" id="shipping_address">
-            </div>
+        </header>
+        <!-- main -->
+        <div id="main">
+            <div class="profile-update-container">
+                <h2 class="title">회원 정보 수정</h2>
+                <p class="description">닉네임, 전화번호, 배송지를 수정하세요.</p>
+                <form class="login-form">
+                    <div>
+                        <label class="label-width" for="nickname">닉네임</label>
+                        <input type="text" id="nickname">
+                    </div>
+                    <div>
+                        <label class="label-width" for="number">전화 번호</label>
+                        <input type="text" id="number">
+                    </div>
+                    <div>
+                        <label class="label-width" for="shipping_address">배송지</label>
+                        <input type="text" id="shipping_address">
+                    </div>
 
-            <input type="submit" id="update-btn" class="submit-button" value="수정">
-        </form>
+                    <input type="submit" id="update-btn" class="submit-button" value="수정">
+                </form>
+            </div>
+        </div>
+        <!-- Footer-->
+        <footer id="footer" class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
+        </footer>
     </div>
-</div>
-
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="../js/scripts.js"></script>
+    <script src="../js/components/Home/index.js" type="module"></script>
     <script src="../js/components/ProfileUpdate/index.js" type="module"></script>
 </body>
 </html>
