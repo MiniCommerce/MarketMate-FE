@@ -30,27 +30,29 @@ const member = storage.getSessionStorage("member");
 async function productOnload() {
     try {
         // 상품 상세 내용 출력
-        
+
         const url = `${URL.productDetailURL}?product_id=${product_id}`;
         const res = await API.apiGet(url);
-        
+
         if (res) {
             const images = res["images"];
-            
+
             for (let i = 0; i < images.length; i++) {
+                const $li = document.createElement("li"); // li 요소 생성
                 const $img = document.createElement("img");
                 $img.setAttribute("src", images[i].image);
-                
-                $imageList.append($img);
+
+                $li.appendChild($img); // img를 li의 자식으로 추가
+                $imageList.append($li);
             }
 
             $id.innerText = res.id;
-            $name.innerText = `품명: ${res.product_name}`;
+            $name.innerText = `${res.product_name}`;
             $category.innerText = `카테고리: ${res.category}`;
-            $price.innerText = `가격: ${res.price}`;
+            $price.innerText = `${res.price}won`;
             $score.innerText = `평점: ${res.score}`;
             $amount.innerText = `재고: ${res.amount}`;
-            $desc.innerText = `상품 설명: ${res.desc}`;
+            $desc.innerText = `${res.desc}`;
             $seller.innerText = `판매자: ${res.store_name}`;
             question.set_seller_id(res.seller);
         }
@@ -137,7 +139,7 @@ async function goUpdate() {
 // HTML 문서 전체가 로드 되었을 때 이벤트 등록
 document.addEventListener("DOMContentLoaded", productOnload);
 // 문의조회
-$questionBtn.addEventListener("click", function() {
+$questionBtn.addEventListener("click", function () {
     question.get_question_list(product_id);
 });
 
@@ -157,7 +159,7 @@ else {
     // 결제 버튼 이벤트 등록
     $orderBtn.addEventListener("click", orderStart);
     // 문의등록
-    $questionWriteBtn.addEventListener("click", function() {
+    $questionWriteBtn.addEventListener("click", function () {
         question.write_question(product_id);
     });
 }
