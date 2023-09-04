@@ -1,4 +1,4 @@
-import { apiGet, apiAuthDelete,apiAuthPost, apiAuthGet  } from '../../utils/fetchAPI.js';
+import { apiGet, apiAuthDelete, apiAuthPost, apiAuthGet } from '../../utils/fetchAPI.js';
 import { URL } from '../../data/index.js';
 import { getSessionStorage, setSessionStorage } from '../../utils/storage.js';
 
@@ -11,26 +11,26 @@ async function reviewlist() {
     try {
         const response = await apiGet(URL.reviewlistURL + product_id + "/", {});
         const currentUserID = token ? await apiAuthGet(URL.userDiscriminationURL, token) : -1;
-        
+
         $reviewContainer.innerHTML = "";
 
         for (const review of response) {
 
             const reviewContainer = document.createElement("div");
 
-            const reviewWriter = document.createElement("li");
-            reviewWriter.textContent = '작성자 : ' + review.buyer_name;
+            const reviewWriter = document.createElement("span");
+            reviewWriter.textContent = review.buyer_name;
             reviewContainer.appendChild(reviewWriter);
 
-            const reviewTime = document.createElement("li");
-            reviewTime.textContent = '작성시간 : ' + formatDate(review.created_at);
+            const reviewTime = document.createElement("span");
+            reviewTime.textContent = formatDate(review.created_at);
             reviewContainer.appendChild(reviewTime);
 
-            const reviewScore = document.createElement("li");
+            const reviewScore = document.createElement("p");
             reviewScore.textContent = '평점 : ' + review.score;
             reviewContainer.appendChild(reviewScore);
 
-            const reviewDesc = document.createElement("li");
+            const reviewDesc = document.createElement("p");
             reviewDesc.textContent = review.desc;
             reviewContainer.appendChild(reviewDesc);
 
@@ -51,7 +51,7 @@ async function reviewlist() {
                     try {
                         await apiAuthDelete(URL.reviewDeleteURL, { review_id: review.id }, token);
                         alert("리뷰가 삭제되었습니다.");
-                        window.location.reload(); 
+                        window.location.reload();
                     } catch (error) {
                         console.error("리뷰 삭제 실패", error);
                     }
@@ -76,10 +76,10 @@ function formatDate(dateString) {
 async function reviewWrite() {
     const token = getSessionStorage("token");
     const product_id = getSessionStorage("product_id");
-    
+
     const score = document.querySelector("#review-score").value;
     const reviewText = document.querySelector("#review-write").value;
-    if(score > 5 || score < 0){
+    if (score > 5 || score < 0) {
         alert("점수는 0~5점만 줄 수 있습니다.")
         return;
     }
