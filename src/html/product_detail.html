@@ -52,7 +52,6 @@
             </div>
         </nav>
 
-
         <!-- Product section-->
         <section class="py-5">
             <div class="container px-4 px-lg-5 my-5">
@@ -94,7 +93,7 @@
                         <p id="amount"></p>
                         <p id="desc" class="lead"></p>
                         <div class="d-flex">
-                            <input class="form-control text-center me-3" id="quantity" type="num" value="1"
+                            <input class="form-control text-center me-3" id="quantity" type="number" min="1" value="1"
                                 style="max-width: 3rem" />
                             <button id="cart" class="btn btn-outline-dark flex-shrink-0" type="button">
                                 <i class="bi-cart-fill me-1"></i>
@@ -130,6 +129,7 @@
         <!-- 문의 목록 -->
         <div class="question-container">
         </div>
+
     </div>
 
     <script src="../js/components/Product/productDetail.js" type="module"></script>

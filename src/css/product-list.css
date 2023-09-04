@@ -1,0 +1,46 @@
+.order-table{
+    border-collapse: separate;
+    border-spacing: 0 15px;
+    margin-left: 100px;
+}
+.order-table th{
+    padding: 10px;
+    text-align: center;
+}
+.product-table tr {
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px black
+}
+.product-table td {
+    padding: 10px;
+    text-align: center;
+}
+.product-table img{
+    width: 70%;
+    height: 70%;
+}
+[type="text"],
+[type="password"],
+[type="email"] {
+	width: 90px;
+	height: 32px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	padding: 0 8px;
+}
+
+.order-table select{
+    border-radius: 5px;
+}
+
+#cart-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+#cart-main .order-table{
+    margin: 0;
+}
