@@ -79,7 +79,10 @@ async function reviewWrite() {
     
     const score = document.querySelector("#review-score").value;
     const reviewText = document.querySelector("#review-write").value;
-
+    if(score > 5 || score < 0){
+        alert("점수는 0~5점만 줄 수 있습니다.")
+        return;
+    }
     const requestData = {
         score: score,
         desc: reviewText,
