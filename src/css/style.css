@@ -92,6 +92,8 @@
 .logout-btn, 
 .profile-page,
 .signin-page,
-.product-list-page {
+.product-list-page,
+.order-list-page,
+.product-register-list-page {
     cursor: pointer;
 }

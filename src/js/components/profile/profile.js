@@ -1,30 +1,42 @@
 import { apiAuthGet } from "../../utils/fetchAPI.js";
 import { URL } from "../../data/index.js";
 import { getSessionStorage, setSessionStorage } from '../../utils/storage.js';
+import { storage } from "../../utils/index.js";
 
 const $updateBtn = document.querySelector("#update-btn");
 const $pwdUpdateBtn = document.querySelector("#pwd-update-btn");
 const $deleteBtn = document.querySelector("#delete-btn");
 
-const $buyerprofile = document.querySelector(".buyer-profile");
-const $sellerprofile = document.querySelector(".seller-profile");
+const member = storage.getSessionStorage("member");
 
 async function fetchUserRole(event) {
     event.preventDefault();
 
     try {
-        const token = getSessionStorage("token"); 
-        const response = await apiAuthGet(URL.userDiscriminationURL, token); 
+        const token = getSessionStorage("token");
 
-        if (response.message === '판매자') {
-            $buyerprofile.style.display = "none";
-            $sellerprofile.style.display = "block";
-            setSessionStorage("type", "판매자");
-        } else if (response.message === '구매자') {
-            $buyerprofile.style.display = "block";
-            $sellerprofile.style.display = "none";
-            setSessionStorage("type", "구매자");
+        if (member === "buyer") {
+            const data = await apiAuthGet(URL.buyerUpdateURL, token);
+            const nicknameField = document.getElementById("nickname");
+            const numberField = document.getElementById("number");
+            const shippingAddressField = document.getElementById("shipping_address");
+
+            nicknameField.value = data.nickname;
+            numberField.value = data.number;
+            shippingAddressField.value = data.shipping_address;
+
         }
+        else {
+            const data = await apiAuthGet(URL.sellerUpdateURL, token);
+            const storenameField = document.getElementById("nickname");
+            const numberField = document.getElementById("number");
+            const shippingPlaceField = document.getElementById("shipping_address");
+
+            storenameField.value = data.store_name;
+            numberField.value = data.number;
+            shippingPlaceField.value = data.shipping_place;
+        }
+    
     } catch (err) {
         console.log(err);
     }
@@ -34,7 +46,7 @@ window.addEventListener("load", fetchUserRole);
 $updateBtn.addEventListener("click", (e) => {
     e.preventDefault();
 
-    if (getSessionStorage("type") === "구매자") {
+    if (member === "buyer") {
         location.href = "profile_update.html";
     } else {
         location.href = "seller_profile_update.html";
