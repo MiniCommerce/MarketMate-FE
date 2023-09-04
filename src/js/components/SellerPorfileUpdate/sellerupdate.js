@@ -40,6 +40,8 @@ async function sellerupdate(event) {
         if (response.token) {
             setSessionStorage("token", response.token);
         }
+        alert("회원정보 수정에 성공했습니다.")
+        location.reload();
 
     } catch (err) {
         console.log(err);
