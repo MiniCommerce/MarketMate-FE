@@ -55,6 +55,7 @@ async function fetchOrders() {
         if(order.status == 'paid'){
         const refundCell = document.createElement('td');
         const refundButton = document.createElement('button');
+        refundButton.classList.add('submit-button');
         refundButton.textContent = '환불';
         refundButton.addEventListener('click', () => {
             cancelPay(order.purchase

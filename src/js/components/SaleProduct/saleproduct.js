@@ -76,6 +76,7 @@ function renderSale(products) {
 
     const updateCell = document.createElement('td');
     const updateButton = document.createElement('button');
+    updateButton.classList.add('submit-button');
     updateButton.textContent = '수정';
 
     updateButton.addEventListener('click', event => {
