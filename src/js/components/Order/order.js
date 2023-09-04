@@ -48,6 +48,8 @@ async function orderOnload(event) {
 
 // 구매 버튼 클릭 시 이벤트
 async function startPurchase(event) {
+  event.preventDefault();
+
   // 중복되지 않는 상점 거래 ID 생성
   const merchantUID = `merchant-${self.crypto.randomUUID()}`.slice(0, 39);
 
