@@ -11,3 +11,27 @@
     height: 300px;
     overflow: auto;
 }
+
+#root {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+}
+
+#header {
+    width: 100%;
+    height: 20%;
+}
+
+/* 메인 컨텐츠 */
+#main {
+    width: 100%;
+    flex: 1;
+}
+
+/* 페이지 푸터 */
+#footer {
+    width: 100%;
+    height: 10%;
+}
