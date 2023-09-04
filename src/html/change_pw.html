@@ -5,19 +5,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>비밀번호 변경</title>
+    <link href="../css/login-join.css" rel="stylesheet"/>
 </head>
 <body>
-    <h1>비밀번호 변경</h1>
-    <form>
-        <label for="password1">현재 비밀번호</label>
-        <input type="password" id="password1">
-        <label for="password2">현재 비밀번호 확인</label>
-        <input type="password" id="password2">
-        <label for="password3">변경 비밀번호 확인</label>
-        <input type="password" id="password3">
+    <div class="main">
+        <div class="container">
+            <h2 class="title">비밀번호 변경</h2>
+            <p class="description">현재 비밀번호와 바꿀 비밀번호를 입력하세요.</p>
+                <form class="login-form">
+                    <div>
+                        <label class="label-width"  for="password1" >현재 비밀번호</label>
+                        <input type="password" id="password1">
+                    </div>
+                    <div>
+                        <label class="label-width"  for="password2">현재 비밀번호 확인</label>
+                        <input type="password" id="password2">
+                    </div>
+                    <div>
+                        <label class="label-width"  for="password3">변경 비밀번호 확인</label>
+                        <input type="password" id="password3">
+                    </div>
 
-        <input type="submit" id="changepw-btn" value="비밀번호 변경">
-    </form>
+                    <input type="submit" id="changepw-btn" class="submit-button" value="비밀번호 변경">
+                </form>
+            </div>
+        </div>
     <script src="../js/components/ChangePw/index.js" type="module"></script>
 </body>
 </html>
